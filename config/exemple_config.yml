@@ -13,6 +13,7 @@ security:
 
 # Simulation du Canal (Étudiant C)
 channel_simulation:
+  enable_jamming: true      # Activer/Désactiver le brouillage
   default_snr: 15           # Rapport Signal/Bruit en dB
   ber_threshold: 1e-5       # Taux d'erreur binaire cible
   jamming_intensity: 0.8    # Puissance du brouillage (0 à 1)
@@ -21,4 +22,4 @@ channel_simulation:
 data_paths:
   input_image: "data/input/earth.jpg"
   output_image: "data/output/received_earth.jpg"
-  logs: "logs/communication.log"
+  logs: "data/communication.log"
