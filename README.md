@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # satcom-sec
 
 Ce projet vise à modéliser, attaquer et sécuriser une chaîne de communication satellite simulée,
@@ -23,6 +24,8 @@ Le projet démontre une évolution progressive de la sécurité du système :
 | **Niveau 2** | Sécurisé | Chiffrement des données et authentification des commandes. |
 | **Niveau 3** | Résilient | Saut de fréquence (FHSS) pour contrer le brouillage actif. |
 =======
+=======
+>>>>>>> 3841cad (Encoding test)
 # satcom-sec
 
 Ce projet vise à modéliser, attaquer et sécuriser une chaîne de communication satellite simulée,
@@ -35,4 +38,7 @@ L’architecture est volontairement modulaire afin de :
 - permettre une évolution progressive du projet (attaques, défenses, métriques).
 
 Chaque dossier correspond à une brique fonctionnelle précise du système.
+<<<<<<< HEAD
+>>>>>>> 3841cad (Encoding test)
+=======
 >>>>>>> 3841cad (Encoding test)
