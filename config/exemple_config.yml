@@ -17,6 +17,12 @@ channel_simulation:
   default_snr: 15           # Rapport Signal/Bruit en dB
   ber_threshold: 1e-5       # Taux d'erreur binaire cible
   jamming_intensity: 0.8    # Puissance du brouillage (0 à 1)
+  jamming:
+    mode: "barrage"         # Modes disponibles: barrage, pulse, tone
+    seed: 2026              # Seed pour reproduire exactement un scénario
+    burst_probability: 0.08 # Probabilité de déclenchement d'une rafale de brouillage
+    burst_length: 64        # Longueur d'une rafale (échantillons ou bits)
+    tone_frequency_ratio: 0.12 # Fréquence normalisée du brouillage sinusoïdal
 
 # Chemins de fichiers
 data_paths:
