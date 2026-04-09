@@ -6,12 +6,15 @@
 
 import struct
 import binascii
+import channel.jamming as jm
+import channel.reed_solomon as sm
+
 
 # =========================
 # 1. Données à transmettre
 # =========================
-payload_1 = b"hello"
-payload_2 = b"world"
+payload_1 = b"hello world how are you"
+payload_2 = b"fine and you"
 
 # =========================
 # 2. Champs CCSDS
@@ -51,6 +54,14 @@ packet_2 = build_packet(payload_2, seq_count + 1)
 # 4. Assemblage des deux trames
 # =========================
 packet = packet_1 + packet_2
+sm_protector = sm.ReedSolomonProtector(ecc_symbols=32)
+packet = sm_protector.encode(packet)
+
+
+jammer = jm.SatelliteJammer.from_yaml("config/exemple_config.yml")
+packet, report = jammer.jam_bytes(packet)
+
+packet, success = sm_protector.decode(packet)
 
 # =========================
 # 6. Affichage
