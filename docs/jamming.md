@@ -22,13 +22,16 @@ channel_simulation:
   enable_jamming: true
   default_snr: 15
   ber_threshold: 1e-5
-  jamming_intensity: 0.8
+  jamming_intensity: 0.08
   jamming:
-    mode: "barrage"
+    mode: "multi"
+    modes: ["barrage", "pulse", "tone"]
     seed: 2026
     burst_probability: 0.08
     burst_length: 64
     tone_frequency_ratio: 0.12
+  reed_solomon:
+    ecc_symbols: 32
 ```
 
 Signification :
@@ -37,10 +40,13 @@ Signification :
 - `default_snr` définit le bruit de base du canal ;
 - `ber_threshold` sert de seuil d'alerte pour juger si le canal est trop dégradé ;
 - `jamming_intensity` règle la puissance relative du brouilleur entre 0 et 1 ;
+  pour une démo corrigeable avec Reed-Solomon, une plage de `0.05` à `0.15` est recommandée ;
 - `mode` choisit le profil de brouillage :
   - `barrage` : bruit large bande continu ;
   - `pulse` : brouillage par rafales ;
   - `tone` : brouillage sinusoïdal périodique ;
+  - `multi` : combine plusieurs profils en même temps ;
+- `modes` permet de sélectionner les profils à combiner quand `mode: "multi"` ;
 - `seed` permet de rejouer exactement le même scénario ;
 - `burst_probability` et `burst_length` pilotent le mode `pulse` ;
 - `tone_frequency_ratio` pilote la fréquence normalisée du mode `tone`.
