@@ -11,6 +11,11 @@ security:
   cipher_key: "my_secret_key_32"
   integrity_check: "CRC32"
 
+# Bool activation
+activation:
+  reed_solomon: true
+  jamming: true
+
 # Simulation du Canal (Étudiant C)
 channel_simulation:
   enable_jamming: true      # Activer/Désactiver le brouillage
