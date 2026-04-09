@@ -1,3 +1,6 @@
+# Branchement de l'encodeur au décodeur
+
+
 import sys
 import os
 
@@ -8,7 +11,7 @@ from src.receiver.frameParser import parseStream
 from src.receiver.dataReconstructor import reconstruct
 
 
-image_path = "../data/input/image_source.png"
+image_path = "../data/input/image_source.bmp"
 # 1. Envoyer l'image → liste de paquets
 packets = send_image(image_path)
 
@@ -16,7 +19,7 @@ packets = send_image(image_path)
 raw_stream = b"".join(packets)
 
 # 3. Parser le bloc → liste de paquets lisibles
-parsed = parsed = parseStream(raw_stream)
+parsed = parseStream(raw_stream)
 
 # 4. Reconstruire l'image
-reconstruct(parsed, "../data/output/received_image.png")
+reconstruct(parsed, "../data/output/received_image_without_jamming.bmp")
