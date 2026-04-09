@@ -21,16 +21,19 @@ channel_simulation:
   enable_jamming: true      # Activer/Désactiver le brouillage
   default_snr: 15           # Rapport Signal/Bruit en dB
   ber_threshold: 1e-5       # Taux d'erreur binaire cible
-  jamming_intensity: 0.4    # Puissance du brouillage (0 à 1)
+  jamming_intensity: 0.08   # Puissance du brouillage (0 à 1), réglée pour rester corrigeable en démo
   jamming:
-    mode: "barrage"         # Modes disponibles: barrage, pulse, tone
+    mode: "multi"          # Modes: barrage, pulse, tone ou multi
+    modes: ["barrage", "pulse", "tone"] # Combinaison active si mode=multi
     seed: 2026              # Seed pour reproduire exactement un scénario
     burst_probability: 0.08 # Probabilité de déclenchement d'une rafale de brouillage
     burst_length: 64        # Longueur d'une rafale (échantillons ou bits)
     tone_frequency_ratio: 0.12 # Fréquence normalisée du brouillage sinusoïdal
+  reed_solomon:
+    ecc_symbols: 32         # Nombre d'octets de redondance RS
 
 # Chemins de fichiers
 data_paths:
-  input_image: "data/input/earth.jpg"
-  output_image: "data/output/received_earth.jpg"
+  input_image: "data/input/image_source.png"
+  output_image: "data/output/received_image.png"
   logs: "data/communication.log"
