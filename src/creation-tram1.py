@@ -6,10 +6,13 @@
 
 import struct
 import binascii
+import yaml
 
-from streamlit import config
 from channel import reed_solomon as sm
 from channel import jamming as jm
+
+with open("config/exemple_config.yml", "r") as f:
+    config = yaml.safe_load(f)
 
 
 # =========================
@@ -55,16 +58,21 @@ packet_2 = build_packet(payload_2, seq_count + 1)
 # =========================
 # 4. Assemblage des deux trames
 # =========================
+isactivatedreed = config["activation"]["reed_solomon"]
+isactivatedjam = config["activation"]["jamming"]
+
 packet = packet_1 + packet_2
 
-sm_protector = sm.ReedSolomonProtector(ecc_symbols=32)
-packet = sm_protector.encode(packet)
+if isactivatedreed:
+    sm_protector = sm.ReedSolomonProtector(ecc_symbols=32)
+    packet = sm_protector.encode(packet)
 
+if isactivatedjam:
+    jammer = jm.SatelliteJammer.from_yaml("config/exemple_config.yml")
+    packet, report = jammer.jam_bytes(packet)
 
-jammer = jm.SatelliteJammer.from_yaml("config/exemple_config.yml")
-packet, report = jammer.jam_bytes(packet)
-
-packet, success = sm_protector.decode(packet)
+if isactivatedreed:
+    packet, success = sm_protector.decode(packet)
 
 # =========================
 # 6. Affichage
