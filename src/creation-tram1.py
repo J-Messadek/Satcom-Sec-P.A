@@ -6,8 +6,10 @@
 
 import struct
 import binascii
-import channel.jamming as jm
-import channel.reed_solomon as sm
+
+from streamlit import config
+from channel import reed_solomon as sm
+from channel import jamming as jm
 
 
 # =========================
@@ -54,6 +56,7 @@ packet_2 = build_packet(payload_2, seq_count + 1)
 # 4. Assemblage des deux trames
 # =========================
 packet = packet_1 + packet_2
+
 sm_protector = sm.ReedSolomonProtector(ecc_symbols=32)
 packet = sm_protector.encode(packet)
 
