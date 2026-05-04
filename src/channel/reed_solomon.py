@@ -2,6 +2,7 @@ from __future__ import annotations
 from reedsolo import RSCodec, ReedSolomonError
 from .jamming import JammingReport
 
+
 class ReedSolomonProtector:
     def __init__(self, ecc_symbols: int = 10):
         """
@@ -34,12 +35,12 @@ class ReedSolomonProtector:
         encoded_data = self.encode(original_payload)
         jammed_data, report = jammer_func(encoded_data)
         decoded_data, success = self.decode(jammed_data)
-        
+
         return {
             "success": success,
             "original_len": len(original_payload),
             "total_sent_len": len(encoded_data),
             "errors_detected": report.flipped_bits,
             "effective_ber": report.estimated_ber,
-            "recovered_data": decoded_data
+            "recovered_data": decoded_data,
         }

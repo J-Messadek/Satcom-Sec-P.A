@@ -8,9 +8,9 @@ import struct
 import binascii
 
 # ---- Constants -----------------------------------------------
-HEADER_SIZE = 6       # Primary header: 3 x 16-bit words
-CRC_SIZE    = 2       # CRC-16 (CCITT / crc_hqx) appended at the end
-MIN_PACKET  = HEADER_SIZE + CRC_SIZE   # Minimum valid packet size (no payload)
+HEADER_SIZE = 6  # Primary header: 3 x 16-bit words
+CRC_SIZE = 2  # CRC-16 (CCITT / crc_hqx) appended at the end
+MIN_PACKET = HEADER_SIZE + CRC_SIZE  # Minimum valid packet size (no payload)
 
 
 def parseHeader(rawHeader: bytes) -> dict:
@@ -25,26 +25,28 @@ def parseHeader(rawHeader: bytes) -> dict:
                         apid, seqFlags, seqCount, dataLength
     """
     if len(rawHeader) < HEADER_SIZE:
-        raise ValueError(f"Header too short: {len(rawHeader)} bytes (expected {HEADER_SIZE})")
+        raise ValueError(
+            f"Header too short: {len(rawHeader)} bytes (expected {HEADER_SIZE})"
+        )
 
     word1, word2, dataLength = struct.unpack(">HHH", rawHeader)
 
-    version     = (word1 >> 13) & 0x07
-    packetType  = (word1 >> 12) & 0x01
-    secHdrFlag  = (word1 >> 11) & 0x01
-    apid        = word1 & 0x07FB
+    version = (word1 >> 13) & 0x07
+    packetType = (word1 >> 12) & 0x01
+    secHdrFlag = (word1 >> 11) & 0x01
+    apid = word1 & 0x07FF
 
-    seqFlags    = (word2 >> 14) & 0x03
-    seqCount    = word2 & 0x3FFF
+    seqFlags = (word2 >> 14) & 0x03
+    seqCount = word2 & 0x3FFF
 
     return {
-        "version":    version,
+        "version": version,
         "packetType": packetType,
         "secHdrFlag": secHdrFlag,
-        "apid":       apid,
-        "seqFlags":   seqFlags,
-        "seqCount":   seqCount,
-        "dataLength": dataLength,   # len(payload) - 1 per CCSDS spec
+        "apid": apid,
+        "seqFlags": seqFlags,
+        "seqCount": seqCount,
+        "dataLength": dataLength,  # len(payload) - 1 per CCSDS spec
     }
 
 
@@ -67,29 +69,29 @@ def parsePacket(rawData: bytes, offset: int = 0) -> dict | None:
     if offset + MIN_PACKET > len(rawData):
         return None
 
-    rawHeader = rawData[offset: offset + HEADER_SIZE]
+    rawHeader = rawData[offset : offset + HEADER_SIZE]
     header = parseHeader(rawHeader)
 
-    payloadSize = header["dataLength"] + 1       # CCSDS: dataLength = len(payload) - 1
-    totalSize   = HEADER_SIZE + payloadSize + CRC_SIZE
+    payloadSize = header["dataLength"] + 1  # CCSDS: dataLength = len(payload) - 1
+    totalSize = HEADER_SIZE + payloadSize + CRC_SIZE
 
     if offset + totalSize > len(rawData):
-        return None   # Incomplete packet
+        return None  # Incomplete packet
 
-    payload  = rawData[offset + HEADER_SIZE: offset + HEADER_SIZE + payloadSize]
-    crcBytes = rawData[offset + HEADER_SIZE + payloadSize: offset + totalSize]
+    payload = rawData[offset + HEADER_SIZE : offset + HEADER_SIZE + payloadSize]
+    crcBytes = rawData[offset + HEADER_SIZE + payloadSize : offset + totalSize]
 
-    receivedCrc  = struct.unpack(">H", crcBytes)[0]
-    computedCrc  = binascii.crc_hqx(rawHeader + payload, 0xFFFF)
-    crcValid     = (receivedCrc == computedCrc)
+    receivedCrc = struct.unpack(">H", crcBytes)[0]
+    computedCrc = binascii.crc_hqx(rawHeader + payload, 0xFFFF)
+    crcValid = receivedCrc == computedCrc
 
     return {
         **header,
-        "payload":     payload,
+        "payload": payload,
         "receivedCrc": receivedCrc,
         "computedCrc": computedCrc,
-        "crcValid":    crcValid,
-        "totalSize":   totalSize,
+        "crcValid": crcValid,
+        "totalSize": totalSize,
     }
 
 
@@ -104,12 +106,14 @@ def parseStream(rawData: bytes) -> list[dict]:
         List of parsed packet dicts (same structure as parsePacket output).
     """
     packets = []
-    offset  = 0
+    offset = 0
 
     while offset < len(rawData):
         packet = parsePacket(rawData, offset)
         if packet is None:
-            print(f"[WARNING] Could not parse packet at offset {offset}. Remaining bytes: {len(rawData) - offset}")
+            print(
+                f"[WARNING] Could not parse packet at offset {offset}. Remaining bytes: {len(rawData) - offset}"
+            )
             break
         packets.append(packet)
         offset += packet["totalSize"]
