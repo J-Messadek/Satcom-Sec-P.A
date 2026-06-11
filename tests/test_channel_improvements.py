@@ -1,14 +1,7 @@
-import sys
 import unittest
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
-
-from channel.jamming import SatelliteJammer
-from channel.reed_solomon import ReedSolomonProtector
+from src.channel.jamming import SatelliteJammer
+from src.channel.reed_solomon import ReedSolomonProtector
 
 
 class TestChannelImprovements(unittest.TestCase):
