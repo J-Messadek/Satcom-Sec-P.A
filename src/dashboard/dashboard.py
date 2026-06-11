@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.pipeline import ATTACKS, run_attack_defense, run_transmission
+from src.pipeline import ATTACKS, attack_image, defend_image, run_attack_defense
 
 INPUT_DIR = ROOT / "data" / "input"
 
@@ -102,18 +102,17 @@ with tab_img:
         st.info("📥 Sélectionne ou téléverse une image dans la barre latérale.")
     else:
         raw = image.tobytes()
-        params = dict(jamming=True, snr_db=snr_db, intensity=intensity,
-                      mode=mode, seed=int(seed))
+        params = dict(snr_db=snr_db, intensity=intensity, mode=mode, seed=int(seed))
 
-        b1, b2, b3 = st.columns(3)
-        if b2.button("🛑 Lancer l'attaque"):
-            res = run_transmission(raw, reed_solomon=False, **params)
-            st.session_state["attack"] = (pixels_to_image(res.received, image.size), res)
+        _, b_atk, b_def, _ = st.columns(4)
+        if b_atk.button("🛑 Lancer l'attaque"):
+            res = attack_image(raw, **params)
+            st.session_state["attack"] = (pixels_to_image(res.output, image.size), res)
             st.session_state.pop("defense", None)
-        if b3.button("🛡️ Activer la défense"):
+        if b_def.button("🛡️ Activer la défense"):
             with st.spinner("Correction Reed-Solomon…"):
-                res = run_transmission(raw, reed_solomon=True, ecc_symbols=ecc_symbols, **params)
-            st.session_state["defense"] = (pixels_to_image(res.received, image.size), res)
+                res = defend_image(raw, ecc_symbols=ecc_symbols, **params)
+            st.session_state["defense"] = (pixels_to_image(res.output, image.size), res)
 
         attack = st.session_state.get("attack")
         defense = st.session_state.get("defense")
@@ -130,8 +129,7 @@ with tab_img:
             else:
                 img_a, res_a = attack
                 st.image(img_a, use_container_width=True)
-                st.caption(f"{res_a.byte_errors} octets corrompus · "
-                           f"{res_a.jam_report.flipped_bits} bits inversés")
+                st.caption(f"{res_a.byte_errors} octets corrompus · {res_a.flipped_bits} bits inversés")
         with c_def:
             st.markdown("#### 🛡️ Avec défense")
             if defense is None:
@@ -139,21 +137,21 @@ with tab_img:
             else:
                 img_d, res_d = defense
                 st.image(img_d, use_container_width=True)
-                tag = "intacte" if res_d.matches_original else f"{res_d.byte_errors} octets résiduels"
+                tag = "image intacte" if res_d.corrected else f"{res_d.byte_errors} octets résiduels"
                 st.caption(f"Reed-Solomon ({ecc_symbols} ECC) · {tag}")
 
         if attack is not None:
             st.write("---")
             res_a = attack[1]
-            m1, m2, m3, m4 = st.columns(4)
             integ_a = 100 * (1 - res_a.byte_error_rate)
+            m1, m2, m3, m4 = st.columns(4)
             m1.metric("Intégrité sans défense", f"{integ_a:.1f}%")
-            m2.metric("Bits inversés", f"{res_a.jam_report.flipped_bits}")
+            m2.metric("Bits inversés", f"{res_a.flipped_bits}")
             if defense is not None:
                 res_d = defense[1]
-                integ_d = 100 * (1 - res_d.byte_error_rate)
+                integ_d = max(0.0, 100 * (1 - res_d.byte_error_rate))
                 m3.metric("Intégrité avec défense", f"{integ_d:.1f}%", f"{integ_d - integ_a:+.1f} pts")
-                m4.metric("Verdict", "✅ RÉCUPÉRÉE" if res_d.matches_original else "↗ AMÉLIORÉE")
+                m4.metric("Verdict", "✅ RÉCUPÉRÉE" if res_d.corrected else "⚠️ AU-DELÀ DU RS")
             else:
                 m3.metric("Intégrité avec défense", "—")
                 m4.metric("Verdict", "—")

@@ -11,12 +11,10 @@ from .attacks.frame_alteration import (
     fuzz_payload,
     inject_packet,
 )
-from .channel.jamming import JammingReport, SatelliteJammer
+from .channel.jamming import SatelliteJammer
 from .channel.reed_solomon import ReedSolomonProtector
 from .detection.anomaly_detector import tag_stream, verify_stream
-from .encoding.encoder import send_payload
 from .protocol.frame import build_packet
-from .receiver.data_reconstructor import reconstruct_data
 from .receiver.frame_parser import parse_stream
 
 DEFAULT_HMAC_KEY = b"secret-hmac-key!"
@@ -31,16 +29,15 @@ ATTACKS = {
 
 
 @dataclass
-class TransmissionResult:
-    original: bytes
-    received: bytes
-    matches_original: bool
+class ChannelResult:
+    output: bytes
     byte_errors: int
     byte_error_rate: float
-    jamming_enabled: bool
-    reed_solomon_enabled: bool
+    flipped_bits: int
+    effective_snr_db: float
+    corrected: bool
     ecc_symbols: int | None
-    jam_report: JammingReport | None
+    status: str
 
 
 @dataclass
@@ -70,44 +67,38 @@ def _count_byte_errors(received: bytes, original: bytes) -> int:
     return paired + abs(len(received) - len(original))
 
 
-def run_transmission(
-    image_bytes: bytes,
-    *,
-    jamming: bool = False,
-    snr_db: float = 12.0,
-    intensity: float = 0.02,
-    mode: str = "barrage",
-    seed: int | None = 2026,
-    reed_solomon: bool = False,
-    ecc_symbols: int = 32,
-) -> TransmissionResult:
-    rs = ReedSolomonProtector(ecc_symbols) if reed_solomon else None
+def attack_image(image_bytes: bytes, *, snr_db=8.0, intensity=0.15,
+                 mode="barrage", seed=2026) -> ChannelResult:
+    """Image transmise sans protection : le brouillage corrompt les octets."""
+    corrupted, report = _build_jammer(snr_db, intensity, mode, seed).jam_bytes(image_bytes)
+    errors = _count_byte_errors(corrupted, image_bytes)
+    return ChannelResult(
+        output=corrupted,
+        byte_errors=errors,
+        byte_error_rate=errors / max(len(image_bytes), 1),
+        flipped_bits=report.flipped_bits,
+        effective_snr_db=report.effective_snr_db,
+        corrected=False,
+        ecc_symbols=None,
+        status="jammed",
+    )
 
-    packets = send_payload(image_bytes, preprocessor=rs.encode if rs else None)
-    raw_stream = b"".join(packets)
 
-    jam_report = None
-    if jamming:
-        raw_stream, jam_report = _build_jammer(snr_db, intensity, mode, seed).jam_bytes(raw_stream)
-
-    parsed = parse_stream(raw_stream)
-    if rs:
-        for pkt in parsed:
-            pkt["payload"], _ = rs.decode(pkt["payload"])
-
-    received = reconstruct_data(parsed, discard_invalid=not (jamming or reed_solomon))
-    byte_errors = _count_byte_errors(received, image_bytes)
-
-    return TransmissionResult(
-        original=image_bytes,
-        received=received,
-        matches_original=received == image_bytes,
-        byte_errors=byte_errors,
-        byte_error_rate=byte_errors / max(len(image_bytes), 1),
-        jamming_enabled=jamming,
-        reed_solomon_enabled=reed_solomon,
-        ecc_symbols=ecc_symbols if reed_solomon else None,
-        jam_report=jam_report,
+def defend_image(image_bytes: bytes, *, snr_db=8.0, intensity=0.15,
+                 mode="barrage", seed=2026, ecc_symbols=32) -> ChannelResult:
+    """Même canal protégé par Reed-Solomon : les erreurs sont corrigées."""
+    jammer = _build_jammer(snr_db, intensity, mode, seed)
+    report = ReedSolomonProtector(ecc_symbols).simulate_protection(image_bytes, jammer.jam_bytes)
+    recovered = report["recovered_data"]
+    return ChannelResult(
+        output=recovered,
+        byte_errors=report["residual_byte_errors"],
+        byte_error_rate=report["residual_byte_errors"] / max(len(image_bytes), 1),
+        flipped_bits=report["errors_detected"],
+        effective_snr_db=report["jam_report"].effective_snr_db,
+        corrected=report["recovered_matches_original"],
+        ecc_symbols=ecc_symbols,
+        status=report["status"],
     )
 
 

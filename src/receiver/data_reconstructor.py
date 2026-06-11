@@ -7,13 +7,6 @@ def sort_packets(packets: list[dict]) -> list[dict]:
     return sorted(packets, key=lambda p: p["seqCount"])
 
 
-def detect_missing(packets: list[dict]) -> list[int]:
-    if not packets:
-        return []
-    seq = [p["seqCount"] for p in packets]
-    return sorted(set(range(seq[0], seq[-1] + 1)) - set(seq))
-
-
 def reconstruct_data(packets: list[dict], discard_invalid: bool = True) -> bytes:
     ordered = sort_packets(packets)
     kept = (p for p in ordered if not discard_invalid or p.get("crcValid", False))
