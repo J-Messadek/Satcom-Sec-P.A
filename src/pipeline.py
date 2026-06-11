@@ -19,13 +19,42 @@ from .receiver.frame_parser import parse_stream
 
 DEFAULT_HMAC_KEY = b"secret-hmac-key!"
 
-ATTACKS = {
-    "alter_apid": "Usurpation d'APID",
-    "alter_seq_count": "Manipulation du seqCount",
-    "fuzz_payload": "Corruption du payload",
-    "fuzz_header": "Fuzzing complet du header",
-    "inject_packet": "Injection d'une fausse trame",
+ATTACK_INFO = {
+    "alter_apid": {
+        "label": "Usurpation d'identité (APID)",
+        "emoji": "🎭",
+        "effet": "L'attaquant change l'identifiant de la source pour faire passer "
+                 "la trame pour un autre émetteur légitime.",
+        "analogie": "Comme falsifier l'adresse de l'expéditeur sur une enveloppe.",
+    },
+    "alter_seq_count": {
+        "label": "Désordre des trames (seqCount)",
+        "emoji": "🔀",
+        "effet": "L'attaquant change le numéro d'ordre de la trame pour désorganiser "
+                 "la reconstruction du message.",
+        "analogie": "Comme renuméroter les pages d'un document pour le rendre incohérent.",
+    },
+    "fuzz_payload": {
+        "label": "Corruption du contenu",
+        "emoji": "✏️",
+        "effet": "L'attaquant modifie les données utiles transportées par la trame.",
+        "analogie": "Comme réécrire des mots dans une lettre avant qu'elle n'arrive.",
+    },
+    "fuzz_header": {
+        "label": "Falsification de l'en-tête",
+        "emoji": "🧨",
+        "effet": "L'attaquant randomise tous les champs d'en-tête de la trame.",
+        "analogie": "Comme barbouiller toutes les informations d'expédition d'un colis.",
+    },
+    "inject_packet": {
+        "label": "Injection d'une fausse trame",
+        "emoji": "👻",
+        "effet": "L'attaquant insère dans le flux une trame entièrement fabriquée.",
+        "analogie": "Comme glisser une fausse lettre dans le sac postal.",
+    },
 }
+
+ATTACKS = {key: info["label"] for key, info in ATTACK_INFO.items()}
 
 
 @dataclass
@@ -47,8 +76,11 @@ class AttackResult:
     crc_still_valid: bool
     all_valid: bool
     verified_count: int
+    frame_before: dict | None = None
+    frame_after: dict | None = None
     structural_alerts: list[dict] = field(default_factory=list)
     hmac_alerts: list[dict] = field(default_factory=list)
+    events: list[str] = field(default_factory=list)
 
 
 def _build_jammer(snr_db, intensity, mode, seed) -> SatelliteJammer:
@@ -102,6 +134,18 @@ def defend_image(image_bytes: bytes, *, snr_db=8.0, intensity=0.15,
     )
 
 
+def _frame_view(pkt: dict | None) -> dict | None:
+    if pkt is None:
+        return None
+    return {
+        "apid": f"{pkt['apid']:#05x}",
+        "seqCount": pkt["seqCount"],
+        "seqFlags": f"{pkt['seqFlags']:#04b}",
+        "payload": pkt["payload"][:8].hex(" "),
+        "crc": "valide" if pkt["crcValid"] else "invalide",
+    }
+
+
 def run_attack_defense(
     attack: str,
     *,
@@ -121,6 +165,7 @@ def run_attack_defense(
     payloads = [f"PKT-{i:03d}".encode() for i in range(num_packets)]
     raw = b"".join(build_packet(p, i, apid=apid) for i, p in enumerate(payloads))
     tagged = tag_stream(raw, key)
+    before = parse_stream(raw)
 
     if attack == "alter_apid":
         modified = alter_apid(raw, target_seq, fake_apid, verbose=False)
@@ -137,12 +182,31 @@ def run_attack_defense(
     verdict = verify_stream(modified, tagged, key, expected_apid=apid)
     parsed = parse_stream(modified)
 
+    if attack == "inject_packet":
+        frame_before = None
+        frame_after = next((p for p in parsed if p["payload"] == b"FORGED!!"), None)
+    else:
+        frame_before = before[target_seq] if target_seq < len(before) else None
+        frame_after = parsed[target_seq] if target_seq < len(parsed) else None
+
+    events = [
+        f"📡 {num_packets} trames émises et signées (HMAC-SHA256).",
+        f"🎯 Attaque « {ATTACK_INFO[attack]['label']} » sur la trame {target_seq}.",
+        "🔧 L'attaquant recalcule le CRC pour masquer la falsification.",
+    ]
+    events += [f"🔎 IDS — {a['type']} (trame {a['seqCount']})." for a in verdict["structuralAlerts"]]
+    events += [f"🔐 HMAC — {a['type']} (trame {a['seqCount']})." for a in verdict["hmacAlerts"]]
+    events.append(f"📊 Bilan : {len(verdict['verifiedPackets'])}/{num_packets} trames authentifiées.")
+
     return AttackResult(
         attack=attack,
         num_packets=num_packets,
         crc_still_valid=bool(parsed) and all(p["crcValid"] for p in parsed),
         all_valid=verdict["allValid"],
         verified_count=len(verdict["verifiedPackets"]),
+        frame_before=_frame_view(frame_before),
+        frame_after=_frame_view(frame_after),
         structural_alerts=verdict["structuralAlerts"],
         hmac_alerts=verdict["hmacAlerts"],
+        events=events,
     )
