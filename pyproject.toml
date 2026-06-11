@@ -13,9 +13,6 @@ dependencies = [
     "reedsolo",
     "pyyaml",
     "pillow",
-    "pandas",
-    "numpy",
-    "plotly",
 ]
 
 [project.optional-dependencies]

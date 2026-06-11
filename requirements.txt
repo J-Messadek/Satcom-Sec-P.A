@@ -3,6 +3,3 @@ streamlit
 reedsolo
 pyyaml
 pillow
-pandas
-numpy
-plotly

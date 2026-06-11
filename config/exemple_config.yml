@@ -33,6 +33,6 @@ channel_simulation:
 
 # Chemins de fichiers (relatifs à la racine du dépôt)
 data_paths:
-  input_image: 'data/input/image_source.png'
-  output_image: 'data/output/received_image.png'
+  input_image: 'data/input/image_source.bmp'
+  output_image: 'data/output/received_image.bmp'
   logs: 'data/communication.log'
