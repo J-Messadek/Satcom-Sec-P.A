@@ -1,4 +1,4 @@
-# Étape 1 : transmission simple (émetteur → récepteur, sans bruit).
+"""Étape 1 : transmission simple (émetteur → récepteur, sans bruit)."""
 
 import sys
 from pathlib import Path
@@ -13,14 +13,6 @@ from src.receiver.data_reconstructor import reconstruct
 image_path = ROOT / "data" / "input" / "image_source.bmp"
 output_path = ROOT / "data" / "output" / "received_image_without_jamming.bmp"
 
-# 1. Émettre l'image → liste de paquets
 packets = send_image(str(image_path))
-
-# 2. Coller les paquets en un seul flux
-raw_stream = b"".join(packets)
-
-# 3. Parser le flux → liste de paquets lisibles
-parsed = parse_stream(raw_stream)
-
-# 4. Reconstruire l'image
+parsed = parse_stream(b"".join(packets))
 reconstruct(parsed, str(output_path))

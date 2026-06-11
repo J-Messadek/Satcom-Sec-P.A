@@ -1,4 +1,4 @@
-"""Émetteur : découpe une image en paquets CCSDS de 512 octets."""
+"""Émetteur : découpe une charge utile en paquets CCSDS de 512 octets."""
 
 from ..protocol.frame import (
     build_packet,
@@ -7,7 +7,7 @@ from ..protocol.frame import (
     SEQ_FLAG_CONTINUATION,
 )
 
-CHUNK_SIZE = 512  # taille du payload de chaque paquet, en octets
+CHUNK_SIZE = 512
 
 
 def read_image_as_bytes(image_path):
@@ -16,30 +16,24 @@ def read_image_as_bytes(image_path):
 
 
 def send_image(image_path, preprocessor=None):
-    """Retourne la liste des paquets CCSDS représentant l'image.
+    return send_payload(read_image_as_bytes(image_path), preprocessor)
 
-    `preprocessor` (optionnel) est appliqué à chaque bloc de payload avant
-    encapsulation — par exemple l'encodage Reed-Solomon.
-    """
-    payload = read_image_as_bytes(image_path)
-    size_payload = len(payload)
 
+def send_payload(payload, preprocessor=None):
+    """`preprocessor` (ex. encodage Reed-Solomon) est appliqué à chaque bloc."""
+    size = len(payload)
     packets = []
-    seq_count = 0
-    for i in range(0, size_payload, CHUNK_SIZE):
-        payload_part = payload[i : i + CHUNK_SIZE]
-
+    for seq_count, i in enumerate(range(0, size, CHUNK_SIZE)):
+        chunk = payload[i : i + CHUNK_SIZE]
         if preprocessor:
-            payload_part = preprocessor(payload_part)
+            chunk = preprocessor(chunk)
 
         if i == 0:
             seq_flags = SEQ_FLAG_FIRST
-        elif i + CHUNK_SIZE >= size_payload:
+        elif i + CHUNK_SIZE >= size:
             seq_flags = SEQ_FLAG_LAST
         else:
             seq_flags = SEQ_FLAG_CONTINUATION
 
-        packets.append(build_packet(payload_part, seq_count, seq_flags))
-        seq_count += 1
-
+        packets.append(build_packet(chunk, seq_count, seq_flags))
     return packets
