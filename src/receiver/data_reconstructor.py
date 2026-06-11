@@ -1,5 +1,5 @@
 # =============================================================
-# dataReconstructor.py
+# data_reconstructor.py
 # Reconstructs the original data (text or binary image) from
 # a list of validated CCSDS packets.
 #
@@ -13,53 +13,51 @@
 import os
 
 
-def sortPackets(packets: list[dict]) -> list[dict]:
-    """
-    Sort a list of parsed packets by their sequence counter (seqCount).
-    """
+def sort_packets(packets: list[dict]) -> list[dict]:
+    """Sort a list of parsed packets by their sequence counter (seqCount)."""
     return sorted(packets, key=lambda p: p["seqCount"])
 
 
-def detectMissing(packets: list[dict]) -> list[int]:
-    """
-    Identify missing sequence numbers in the received stream.
-    """
+def detect_missing(packets: list[dict]) -> list[int]:
+    """Identify missing sequence numbers in the received stream."""
     if not packets:
         return []
-    seqNumbers = [p["seqCount"] for p in packets]
-    firstSeq   = seqNumbers[0]
-    lastSeq    = seqNumbers[-1]
-    expected   = set(range(firstSeq, lastSeq + 1))
-    received   = set(seqNumbers)
-    return sorted(expected - received)
+    seq_numbers = [p["seqCount"] for p in packets]
+    expected = set(range(seq_numbers[0], seq_numbers[-1] + 1))
+    return sorted(expected - set(seq_numbers))
 
 
-def reconstructData(packets: list[dict], discardInvalid: bool = True) -> bytes:
+def reconstruct_data(packets: list[dict], discard_invalid: bool = True) -> bytes:
     """Reassemble payload data from a list of packets."""
-    sortedPackets = sortPackets(packets)
-    missing = detectMissing(sortedPackets)
+    sorted_packets = sort_packets(packets)
+    missing = detect_missing(sorted_packets)
     if missing:
         print(f"[WARNING] Missing sequence numbers: {missing}")
-    rawData = b""
-    for pkt in sortedPackets:
-        if discardInvalid and not pkt.get("crcValid", False):
-            print(f"[WARNING] Discarding invalid frame seqCount={pkt['seqCount']} (CRC mismatch)")
+
+    raw_data = b""
+    for pkt in sorted_packets:
+        if discard_invalid and not pkt.get("crcValid", False):
+            print(
+                f"[WARNING] Discarding invalid frame seqCount={pkt['seqCount']} "
+                f"(CRC mismatch)"
+            )
             continue
-        rawData += pkt["payload"]
-    return rawData
+        raw_data += pkt["payload"]
+    return raw_data
 
 
-def saveToFile(data: bytes, outputPath: str) -> None:
-    os.makedirs(os.path.dirname(outputPath), exist_ok=True)
-    with open(outputPath, "wb") as f:
+def save_to_file(data: bytes, output_path: str) -> None:
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "wb") as f:
         f.write(data)
-    print(f"[OK] Reconstructed data saved to: {outputPath}")
+    print(f"[OK] Reconstructed data saved to: {output_path}")
 
 
-def reconstruct(packets: list[dict], outputPath: str = None, discardInvalid: bool = True) -> bytes:
+def reconstruct(packets: list[dict], output_path: str = None,
+                discard_invalid: bool = True) -> bytes:
     """Full reconstruction pipeline: sort → validate → concatenate → (save)."""
-    data = reconstructData(packets, discardInvalid=discardInvalid)
-    if outputPath:
-        saveToFile(data, outputPath)
+    data = reconstruct_data(packets, discard_invalid=discard_invalid)
+    if output_path:
+        save_to_file(data, output_path)
     print(f"[INFO] Reconstruction complete: {len(packets)} packets → {len(data)} bytes")
     return data

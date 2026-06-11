@@ -1,4 +1,4 @@
-# Receiver package – Étudiant B
-from .frameParser       import parseStream, parsePacket, parseHeader
-from .frameValidator    import validateCrc, validateHmac, validatePacket
-from .dataReconstructor import reconstruct, reconstructData, sortPackets
+# Receiver package – parsing, validation et reconstruction des trames
+from .frame_parser import parse_stream, parse_packet, parse_header
+from .frame_validator import validate_crc, validate_hmac, validate_packet
+from .data_reconstructor import reconstruct, reconstruct_data, sort_packets

@@ -1,3 +1,8 @@
-# Attacks package – Étudiant B (A1/A2) + Étudiant A (A1) + Étudiant C (A3)
-from .mitm import intercept, tamper, replay
-from .frameAlteration import alterApid, alterSeqCount, fuzzPayload, fuzzHeader, injectPacket
+# Attacks package – vecteurs d'altération de trames (Attaque 2)
+from .frame_alteration import (
+    alter_apid,
+    alter_seq_count,
+    fuzz_payload,
+    fuzz_header,
+    inject_packet,
+)
