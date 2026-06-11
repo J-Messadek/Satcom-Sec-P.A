@@ -1,4 +1,13 @@
-from src.protocol.frame import build_packet  # ✅ ça marche
+"""Émetteur : découpe une image en paquets CCSDS de 512 octets."""
+
+from ..protocol.frame import (
+    build_packet,
+    SEQ_FLAG_FIRST,
+    SEQ_FLAG_LAST,
+    SEQ_FLAG_CONTINUATION,
+)
+
+CHUNK_SIZE = 512  # taille du payload de chaque paquet, en octets
 
 
 def read_image_as_bytes(image_path):
@@ -7,27 +16,30 @@ def read_image_as_bytes(image_path):
 
 
 def send_image(image_path, preprocessor=None):
-    i = 0
-    seq_count = 0
-    packets = []
+    """Retourne la liste des paquets CCSDS représentant l'image.
+
+    `preprocessor` (optionnel) est appliqué à chaque bloc de payload avant
+    encapsulation — par exemple l'encodage Reed-Solomon.
+    """
     payload = read_image_as_bytes(image_path)
     size_payload = len(payload)
-    while i < size_payload:
-        payload_part = payload[i : i + 512]  # on envoi des paquets de 512 bytes
+
+    packets = []
+    seq_count = 0
+    for i in range(0, size_payload, CHUNK_SIZE):
+        payload_part = payload[i : i + CHUNK_SIZE]
 
         if preprocessor:
             payload_part = preprocessor(payload_part)
 
         if i == 0:
-            seq_flags = 0b01  # début de la trame
-        elif i + len(payload[i : i + 512]) >= size_payload:
-            seq_flags = 0b10  # fin de la trame
+            seq_flags = SEQ_FLAG_FIRST
+        elif i + CHUNK_SIZE >= size_payload:
+            seq_flags = SEQ_FLAG_LAST
         else:
-            seq_flags = 0b00  # trame intermédiaire
+            seq_flags = SEQ_FLAG_CONTINUATION
 
-        packet = build_packet(payload_part, seq_count, seq_flags)
-
+        packets.append(build_packet(payload_part, seq_count, seq_flags))
         seq_count += 1
-        i += 512
-        packets.append(packet)
+
     return packets

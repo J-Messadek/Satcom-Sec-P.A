@@ -1,5 +1,5 @@
 # =============================================================
-# frameValidator.py
+# frame_validator.py
 # Validates the integrity and authenticity of received frames.
 #
 # Two levels of protection:
@@ -11,19 +11,16 @@ import hmac
 import hashlib
 
 # ---- Constants -----------------------------------------------
-HMAC_DIGEST_SIZE = 32   # SHA-256 produces 32 bytes
+HMAC_DIGEST_SIZE = 32  # SHA-256 produces 32 bytes
 
 
 # ==============================================================
-# Level 1 – CRC validation (already computed in frameParser)
+# Level 1 – CRC validation (already computed in frame_parser)
 # ==============================================================
 
-def validateCrc(packet: dict) -> bool:
+def validate_crc(packet: dict) -> bool:
     """
     Check whether the CRC embedded in the packet matches the recomputed one.
-
-    Args:
-        packet: Dict returned by frameParser.parsePacket().
 
     Returns:
         True if CRC is valid, False if the frame has been altered or corrupted.
@@ -35,76 +32,48 @@ def validateCrc(packet: dict) -> bool:
 # Level 2 – HMAC-SHA256 authentication (Défense 2)
 # ==============================================================
 
-def computeHmac(headerBytes: bytes, payload: bytes, secretKey: bytes) -> bytes:
-    """
-    Compute a HMAC-SHA256 over the header + payload.
-
-    Args:
-        headerBytes: Raw 6-byte primary header.
-        payload:     Raw payload bytes.
-        secretKey:   Shared secret key (bytes).
-
-    Returns:
-        32-byte HMAC digest.
-    """
-    mac = hmac.new(secretKey, digestmod=hashlib.sha256)
-    mac.update(headerBytes)
+def compute_hmac(header_bytes: bytes, payload: bytes, secret_key: bytes) -> bytes:
+    """Compute a HMAC-SHA256 over the header + payload (32-byte digest)."""
+    mac = hmac.new(secret_key, digestmod=hashlib.sha256)
+    mac.update(header_bytes)
     mac.update(payload)
     return mac.digest()
 
 
-def validateHmac(headerBytes: bytes, payload: bytes,
-                 receivedHmac: bytes, secretKey: bytes) -> bool:
+def validate_hmac(header_bytes: bytes, payload: bytes,
+                  received_hmac: bytes, secret_key: bytes) -> bool:
     """
     Verify that the received HMAC matches the one we would compute.
     Uses hmac.compare_digest to prevent timing attacks.
-
-    Args:
-        headerBytes:  Raw 6-byte primary header.
-        payload:      Raw payload bytes.
-        receivedHmac: HMAC tag received alongside the packet.
-        secretKey:    Shared secret key (bytes).
-
-    Returns:
-        True if the HMAC is valid (frame is authentic), False otherwise.
     """
-    expected = computeHmac(headerBytes, payload, secretKey)
-    return hmac.compare_digest(expected, receivedHmac)
+    expected = compute_hmac(header_bytes, payload, secret_key)
+    return hmac.compare_digest(expected, received_hmac)
 
 
 # ==============================================================
 # High-level helper
 # ==============================================================
 
-def validatePacket(packet: dict, rawData: bytes = None,
-                   secretKey: bytes = None, hmacTag: bytes = None) -> dict:
+def validate_packet(packet: dict, raw_data: bytes = None,
+                    secret_key: bytes = None, hmac_tag: bytes = None) -> dict:
     """
     Run all available validation checks on a parsed packet.
 
-    Args:
-        packet:    Dict from frameParser.parsePacket().
-        rawData:   Full raw byte stream (used to extract raw header).
-        secretKey: If provided, also run HMAC validation.
-        hmacTag:   HMAC tag to verify against (required if secretKey given).
-
     Returns:
         dict with keys:
-            'crcOk'    (bool),
-            'hmacOk'   (bool | None),   None if HMAC not checked
-            'valid'    (bool)            True only if all checked layers pass
+            'crcOk'  (bool),
+            'hmacOk' (bool | None)  – None if HMAC not checked,
+            'valid'  (bool)         – True only if all checked layers pass.
     """
-    crcOk  = validateCrc(packet)
-    hmacOk = None
+    crc_ok = validate_crc(packet)
+    hmac_ok = None
 
-    if secretKey is not None and hmacTag is not None and rawData is not None:
-        offset     = 0
-        headerBytes = rawData[offset: offset + 6]
-        hmacOk      = validateHmac(headerBytes, packet["payload"], hmacTag, secretKey)
-
-    valid = crcOk and (hmacOk is not False)
+    if secret_key is not None and hmac_tag is not None and raw_data is not None:
+        header_bytes = raw_data[0:6]
+        hmac_ok = validate_hmac(header_bytes, packet["payload"], hmac_tag, secret_key)
 
     return {
-        "crcOk":  crcOk,
-        "hmacOk": hmacOk,
-        "valid":  valid,
+        "crcOk": crc_ok,
+        "hmacOk": hmac_ok,
+        "valid": crc_ok and (hmac_ok is not False),
     }
