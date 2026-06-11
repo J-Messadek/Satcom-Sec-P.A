@@ -31,8 +31,8 @@ channel_simulation:
   reed_solomon:
     ecc_symbols: 32         # Nombre d'octets de redondance RS
 
-# Chemins de fichiers
+# Chemins de fichiers (relatifs à la racine du dépôt)
 data_paths:
-  input_image: 'data/input/earth.jpg'
-  output_image: 'data/output/received_earth.jpg'
+  input_image: 'data/input/image_source.png'
+  output_image: 'data/output/received_image.png'
   logs: 'data/communication.log'
