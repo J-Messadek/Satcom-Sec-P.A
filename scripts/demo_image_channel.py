@@ -1,101 +1,75 @@
 # =========================
-# Ce fichier a pour but de motrer comment une trame CCSDS standard est crée.
-# On envoi 2 paquets de télémétrie (payload "hello" et "world") dans une même trame.
-# Puis on affiche la trame complète (header + payload + CRC) en binaire.
+# Démonstration pédagogique :
+#   1. Construction de trames CCSDS (header + payload + CRC).
+#   2. Transmission d'une image à travers le canal, avec protections
+#      (Reed-Solomon / brouillage) activables depuis la configuration.
 # =========================
 
-import struct
-import binascii
+import sys
 from pathlib import Path
 
 import yaml
 from PIL import Image
 
-from channel import reed_solomon as sm
-from channel import jamming as jm
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
-with open("config/exemple_config.yml", "r") as f:
+from src.protocol.frame import build_packet, SEQ_FLAG_UNSEGMENTED
+from src.channel import reed_solomon as sm
+from src.channel import jamming as jm
+
+CONFIG_PATH = ROOT / "config" / "exemple_config.yml"
+with CONFIG_PATH.open("r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
 
 
 # =========================
-# 1. Données à transmettre
+# 1. Démonstration : deux paquets de télémétrie dans un flux CCSDS
 # =========================
-payload_1 = b"hello world how are you"
-payload_2 = b"fine and you"
-
-# =========================
-# 2. Champs CCSDS
-# =========================
-version = 0
-packet_type = 0  # télémétrie
-sec_hdr_flag = 0
-apid = 1
-
-seq_flags = 0b11  # paquet complet
-seq_count = 1
+demo_stream = (
+    build_packet(b"hello world how are you", seq_count=1, seq_flags=SEQ_FLAG_UNSEGMENTED)
+    + build_packet(b"fine and you", seq_count=2, seq_flags=SEQ_FLAG_UNSEGMENTED)
+)
+print(f"[CCSDS] Flux de démonstration : {len(demo_stream)} octets")
 
 
 # =========================
-# 3. Construction du header + paquet
+# 2. Transmission de l'image à travers le canal
 # =========================
-def build_packet(payload, seq_count):
-    packet_length = len(payload) - 1
+reed_enabled = config["activation"]["reed_solomon"]
+jam_enabled = config["activation"]["jamming"]
 
-    first_16bits = (version << 13) | (packet_type << 12) | (sec_hdr_flag << 11) | apid
-
-    second_16bits = (seq_flags << 14) | seq_count
-
-    primary_header = struct.pack(">HHH", first_16bits, second_16bits, packet_length)
-
-    packet = primary_header + payload
-
-    crc = binascii.crc_hqx(packet, 0xFFFF)
-    packet += struct.pack(">H", crc)
-    return packet
-
-
-packet_1 = build_packet(payload_1, seq_count)
-packet_2 = build_packet(payload_2, seq_count + 1)
-
-# =========================
-# 4. Transmission image + protections canal
-# =========================
-isactivatedreed = config["activation"]["reed_solomon"]
-isactivatedjam = config["activation"]["jamming"]
-
-image_path = Path(config["data_paths"]["input_image"])
-output_image_path = Path(config["data_paths"]["output_image"])
+image_path = ROOT / config["data_paths"]["input_image"]
+output_image_path = ROOT / config["data_paths"]["output_image"]
 output_image_path.parent.mkdir(parents=True, exist_ok=True)
 
-with image_path.open("rb") as img:
-    original_packet = img.read()
+original_packet = image_path.read_bytes()
 
 packet = original_packet
 jam_report = None
 rs_report = None
 
-if isactivatedreed:
+if reed_enabled:
     rs_config = config.get("channel_simulation", {}).get("reed_solomon", {})
-    sm_protector = sm.ReedSolomonProtector(ecc_symbols=int(rs_config.get("ecc_symbols", 32)))
+    protector = sm.ReedSolomonProtector(ecc_symbols=int(rs_config.get("ecc_symbols", 32)))
 
-    if isactivatedjam:
-        jammer = jm.SatelliteJammer.from_yaml("config/exemple_config.yml")
-        rs_report = sm_protector.simulate_protection(original_packet, jammer.jam_bytes)
+    if jam_enabled:
+        jammer = jm.SatelliteJammer.from_mapping(config)
+        rs_report = protector.simulate_protection(original_packet, jammer.jam_bytes)
         packet = rs_report["recovered_data"]
         jam_report = rs_report.get("jam_report")
     else:
-        encoded_packet = sm_protector.encode(original_packet)
-        packet, _ = sm_protector.decode(encoded_packet)
-elif isactivatedjam:
-    jammer = jm.SatelliteJammer.from_yaml("config/exemple_config.yml")
+        encoded_packet = protector.encode(original_packet)
+        packet, _ = protector.decode(encoded_packet)
+elif jam_enabled:
+    jammer = jm.SatelliteJammer.from_mapping(config)
     packet, jam_report = jammer.jam_bytes(original_packet)
 
-with output_image_path.open("wb") as received_file:
-    received_file.write(packet)
+output_image_path.write_bytes(packet)
+
 
 # =========================
-# 6. Affichage / diagnostic
+# 3. Diagnostic
 # =========================
 print(f"Image reconstruite sauvegardée dans : {output_image_path}")
 
@@ -119,7 +93,6 @@ if rs_report is not None:
     )
 
 try:
-    received_image = Image.open(output_image_path)
-    received_image.show()
+    Image.open(output_image_path).show()
 except Exception as e:
     print("Impossible d'afficher l'image :", e)
