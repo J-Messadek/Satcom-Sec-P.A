@@ -1,1 +1,34 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgc3JjL2F0dGFja3MvX19pbml0X18ucHkKIyBQYWNrYWdlIGRlcyBhdHRhcXVlcyDigJMgw4l0dWRpYW50IEIgKEExL0EyKSArIMOJdHVkaWFudCBBIChBMSkgKyDDiXR1ZGlhbnQgQyAoQTMpCiMKIyBTdHJ1Y3R1cmUgbW9kdWxhaXJlIDoKIyAgIG1pdG0ucHkgICAgICAgICAgICDigJMgQXR0YXF1ZSAxIDogaW50ZXJjZXB0aW9uIE1JVE0gKyBBRVMtQ1RSICjDiXR1ZGlhbnQgQikKIyAgIGFsdGVyX2FwaWQucHkgICAgICDigJMgQXR0YXF1ZSAyIC8gVmVjdGV1ciAxIDogdXN1cnBhdGlvbiBkJ0FQSUQKIyAgIGFsdGVyX3NlcV9jb3VudC5weSDigJMgQXR0YXF1ZSAyIC8gVmVjdGV1ciAyIDogbWFuaXB1bGF0aW9uIGR1IHNlcUNvdW50CiMgICBmdXp6X3BheWxvYWQucHkgICAg4oCTIEF0dGFxdWUgMiAvIFZlY3RldXIgMyA6IGZ1enppbmcgZHUgcGF5bG9hZAojICAgZnV6el9oZWFkZXIucHkgICAgIOKAkyBBdHRhcXVlIDIgLyBWZWN0ZXVyIDQgOiBmdXp6aW5nIGRlIGwnZW4tdMOqdGUKIyAgIGluamVjdF9wYWNrZXQucHkgICDigJMgQXR0YXF1ZSAyIC8gVmVjdGV1ciA1IDogaW5qZWN0aW9uIGRlIHBhcXVldAojICAgX3V0aWxzLnB5ICAgICAgICAgIOKAkyBIZWxwZXJzIGludGVybmVzIHBhcnRhZ8OpcyAocmVidWlsZFBhY2tldCwgb2Zmc2V0SW5TdHJlYW0pCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKZnJvbSAubWl0bSBpbXBvcnQgaW50ZXJjZXB0LCB0YW1wZXIsIHJlcGxheQoKZnJvbSAuYWx0ZXJfYXBpZCAgICAgIGltcG9ydCBhbHRlckFwaWQKZnJvbSAuYWx0ZXJfc2VxX2NvdW50IGltcG9ydCBhbHRlclNlcUNvdW50CmZyb20gLmZ1enpfcGF5bG9hZCAgICBpbXBvcnQgZnV6elBheWxvYWQKZnJvbSAuZnV6el9oZWFkZXIgICAgIGltcG9ydCBmdXp6SGVhZGVyCmZyb20gLmluamVjdF9wYWNrZXQgICBpbXBvcnQgaW5qZWN0UGFja2V0CgpfX2FsbF9fID0gWwogICAgIyBBdHRhcXVlIDEKICAgICJpbnRlcmNlcHQiLCAidGFtcGVyIiwgInJlcGxheSIsCiAgICAjIEF0dGFxdWUgMgogICAgImFsdGVyQXBpZCIsICJhbHRlclNlcUNvdW50IiwKICAgICJmdXp6UGF5bG9hZCIsICJmdXp6SGVhZGVyIiwgImluamVjdFBhY2tldCIsCl0K
+# =====================================================================
+# src/attacks/__init__.py
+# Package des attaques – Étudiant B (A1/A2) + Étudiant A (A1) + Étudiant C (A3)
+#
+# Structure modulaire :
+#   mitm.py            – Attaque 1 : interception MITM + AES-CTR (Étudiant B)
+#   alter_apid.py      – Attaque 2 / Vecteur 1 : usurpation d'APID
+#   alter_seq_count.py – Attaque 2 / Vecteur 2 : manipulation du seqCount
+#   fuzz_payload.py    – Attaque 2 / Vecteur 3 : fuzzing du payload
+#   fuzz_header.py     – Attaque 2 / Vecteur 4 : fuzzing de l'en-tête
+#   inject_packet.py   – Attaque 2 / Vecteur 5 : injection de paquet
+#   _utils.py          – Helpers internes partagés (rebuildPacket, offsetInStream)
+# =====================================================================
+
+# Attaque 1 (mitm.py) – module d'Étudiant A, disponible après merge
+try:
+    from .mitm import intercept, tamper, replay
+except ImportError:
+    pass  # A1 sera disponible après fusion de la branche Étudiant A sur dev
+
+# Attaque 2 – modules Étudiant B
+from .alter_apid       import alterApid
+from .alter_seq_count  import alterSeqCount
+from .fuzz_payload     import fuzzPayload
+from .fuzz_header      import fuzzHeader
+from .inject_packet    import injectPacket
+
+__all__ = [
+    # Attaque 1 (optionnel avant merge)
+    "intercept", "tamper", "replay",
+    # Attaque 2
+    "alterApid", "alterSeqCount",
+    "fuzzPayload", "fuzzHeader", "injectPacket",
+]
