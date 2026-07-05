@@ -17,7 +17,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from src.config import DEFAULT_HMAC_KEY, ALERT_HMAC_FAIL, ALERT_HMAC_UNKNOWN
-from src.receiver.frameParser import parseStream, HEADER_SIZE
+from src.receiver.frame_parser import parse_stream, HEADER_SIZE
 from src.detection.hmac_auth import computeHmacTag, verifyHmacTag
 from src.detection.structural_ids import detectStructuralAnomalies
 
@@ -45,7 +45,7 @@ def tagStream(
             "_rawHeader": bytes (6 octets, usage interne),
         }
     """
-    packets = parseStream(rawStream)
+    packets = parse_stream(rawStream)
     tagged  = []
 
     for pkt in packets:
@@ -95,7 +95,7 @@ def verifyStream(
             "verifiedPackets":  list  – paquets valides uniquement,
         }
     """
-    receivedPkts = parseStream(rawStream)
+    receivedPkts = parse_stream(rawStream)
 
     # Index des tags hors-bande par seqCount
     tagMap = {t["seqCount"]: t for t in taggedPackets}

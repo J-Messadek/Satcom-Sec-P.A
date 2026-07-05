@@ -12,10 +12,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.pipeline import ATTACK_INFO, attack_image, defend_image, run_attack_defense
+from src.crypto.aes_cbc import BLOCK_SIZE, derive_key, encrypt, decrypt, tamper_and_decrypt
+from src.dashboard.console import init_console, render_console_toggle
 
 INPUT_DIR = ROOT / "data" / "input"
 
 st.set_page_config(page_title="SatCOM", page_icon="🛰️", layout="wide")
+
+logger = init_console()
 
 st.markdown("""
 <style>
@@ -127,7 +131,12 @@ with st.sidebar:
     ecc_symbols = st.slider("Symboles ECC", 2, 64, 32, 2)
 
 image = load_image(name, uploaded, resolution)
-tab_link, tab_frame = st.tabs(["🛰️ CHAÎNE SATELLITE", "🔐 ATTAQUES SUR LES TRAMES"])
+if image is not None and st.session_state.get("_last_image_name") != (name, bool(uploaded)):
+    st.session_state["_last_image_name"] = (name, bool(uploaded))
+    logger.info(f"Image chargée : {name or 'upload'} · {image.size[0]}×{image.size[1]}px")
+
+tab_link, tab_frame, tab_crypto = st.tabs(
+    ["🛰️ CHAÎNE SATELLITE", "🔐 ATTAQUES SUR LES TRAMES", "🔑 CHIFFREMENT AES-256-CBC"])
 
 # ---------------------------------------------------------------------------
 # Onglet 1 : déroulé complet d'une liaison satellite
@@ -142,6 +151,8 @@ with tab_link:
         params = dict(snr_db=snr_db, intensity=intensity, mode=mode, seed=int(seed))
 
         if st.button("📡 Lancer la liaison (downlink)"):
+            logger.info(f"Downlink lancé — SNR={snr_db}dB, intensité={intensity}, "
+                        f"mode={mode}, seed={seed}, ECC={ecc_symbols} symboles")
             with st.spinner("Transmission + correction Reed-Solomon…"):
                 jpg_atk = attack_image(jpeg, **params)
                 jpg_dfn = defend_image(jpeg, ecc_symbols=ecc_symbols, **params)
@@ -152,6 +163,11 @@ with tab_link:
                 raw = raw_img.tobytes()
                 raw_atk = attack_image(raw, **params)
                 raw_dfn = defend_image(raw, ecc_symbols=ecc_symbols, **params)
+
+            logger.info(f"JPEG sans protection : {jpg_atk.flipped_bits} bits brouillés, "
+                        f"statut={jpg_atk.status}")
+            logger.info(f"JPEG + Reed-Solomon : corrigé={jpg_dfn.corrected}, "
+                        f"octets résiduels={jpg_dfn.byte_errors}, statut={jpg_dfn.status}")
 
             st.session_state["link"] = {
                 "jpeg_len": len(jpeg), "ratio": ratio, "raw_px": raw_px,
@@ -253,9 +269,16 @@ with tab_frame:
     st.caption(f"Ce qui va changer → {changes[attack_kind]}")
 
     if st.button("▶️ Simuler l'attaque"):
-        st.session_state["frame"] = run_attack_defense(
+        result = run_attack_defense(
             attack_kind, num_packets=n_packets, apid=apid, target_seq=int(target),
             insert_after=int(target))
+        st.session_state["frame"] = result
+        for event in result.events:
+            logger.info(event)
+        logger.info(f"Bilan attaque « {attack_kind} » : "
+                    f"{result.verified_count}/{result.num_packets} trames authentifiées, "
+                    f"{len(result.structural_alerts)} alerte(s) IDS, "
+                    f"{len(result.hmac_alerts)} échec(s) HMAC")
 
     res = st.session_state.get("frame")
     if res is None:
@@ -291,3 +314,123 @@ with tab_frame:
         st.write("")
         st.markdown("### 📋 Journal des événements")
         st.code("\n".join(res.events), language=None)
+
+# ---------------------------------------------------------------------------
+# Onglet 3 : chiffrement AES-256-CBC — confidentialité (indépendante du HMAC)
+# ---------------------------------------------------------------------------
+with tab_crypto:
+    st.markdown("Les onglets précédents protègent l'**intégrité** (HMAC) et la **fiabilité** "
+                "(Reed-Solomon) d'un flux qui reste en clair. Ici, on ajoute la "
+                "**confidentialité** : le contenu est chiffré en **AES-256-CBC**, un attaquant "
+                "qui intercepte le flux ne voit que du bruit.")
+
+    source_kind = st.radio("Source à chiffrer", ["✉️ Message texte", "🖼️ Image chargée"],
+                           horizontal=True)
+
+    c1, c2 = st.columns([2, 1])
+    passphrase = c1.text_input("🔑 Phrase secrète (dérive une clé AES-256 via SHA-256)",
+                               value="satcom-demo-2026")
+    key = derive_key(passphrase)
+    c2.metric("Taille de clé", f"{len(key) * 8} bits")
+
+    if source_kind == "✉️ Message texte":
+        plaintext = st.text_area(
+            "Message en clair", "Commande satellite : ouverture du panneau solaire.").encode("utf-8")
+    else:
+        if image is None:
+            st.info("📥 Sélectionne ou téléverse une image dans la barre latérale (onglet 1).")
+            plaintext = None
+        else:
+            crypto_img = image.copy()
+            crypto_img.thumbnail((96, 96))
+            plaintext = crypto_img.tobytes()
+            st.caption(f"Image réduite à {crypto_img.size[0]}×{crypto_img.size[1]}px "
+                       "pour que la corruption d'un bloc reste visible à l'œil.")
+
+    if plaintext is not None and st.button("🔒 Chiffrer"):
+        iv, ciphertext = encrypt(plaintext, key)
+        st.session_state["crypto"] = {
+            "kind": source_kind, "plaintext": plaintext, "key": key,
+            "iv": iv, "ciphertext": ciphertext,
+            "size": crypto_img.size if source_kind != "✉️ Message texte" else None,
+        }
+        logger.info(f"AES-256-CBC : {len(plaintext)} octets chiffrés "
+                    f"({len(ciphertext)} octets avec padding PKCS7), IV={iv.hex()}")
+
+    crypto = st.session_state.get("crypto")
+    if crypto is None:
+        st.caption("Renseigne une phrase secrète et chiffre pour voir le résultat.")
+    elif crypto["kind"] != source_kind:
+        st.caption("La source a changé — clique de nouveau sur « Chiffrer ».")
+    else:
+        st.write("---")
+        st.markdown("### 🔒 Résultat du chiffrement")
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Octets en clair", len(crypto["plaintext"]))
+        m2.metric("Octets chiffrés", len(crypto["ciphertext"]))
+        m3.metric("Blocs AES (16o)", len(crypto["ciphertext"]) // BLOCK_SIZE)
+        st.markdown(f"**IV (16 octets)** : `{crypto['iv'].hex()}`")
+        st.markdown(f"**Ciphertext (32 premiers octets)** : `{crypto['ciphertext'][:32].hex()}…`")
+
+        decrypted = decrypt(crypto["ciphertext"], crypto["key"], crypto["iv"])
+        ok = decrypted == crypto["plaintext"]
+        st.success("✅ Déchiffrement conforme — round-trip identique à l'original." if ok
+                   else "❌ Le round-trip ne correspond pas à l'original.")
+
+        if source_kind == "🖼️ Image chargée":
+            i1, i2, i3 = st.columns(3)
+            i1.markdown("#### Image source")
+            i1.image(from_pixels(crypto["plaintext"], crypto["size"]), use_container_width=True)
+            i2.markdown("#### Ciphertext (vu comme des pixels)")
+            i2.image(from_pixels(crypto["ciphertext"], crypto["size"]), use_container_width=True)
+            i2.caption("Sans la clé, le flux chiffré ressemble à du bruit uniforme.")
+            i3.markdown("#### Déchiffrée")
+            i3.image(from_pixels(decrypted, crypto["size"]), use_container_width=True)
+
+        st.write("")
+        st.markdown("### 🧪 Simuler une altération du flux chiffré (bruit / MITM)")
+        st.caption("Le mode CBC propage une erreur sur **exactement 2 blocs de 16 octets** : "
+                   "le bloc modifié est détruit, le suivant subit un simple flip de bit. "
+                   "Le reste du message reste lisible — et **rien ne signale l'altération** "
+                   "au déchiffrement (sauf accident de padding) : c'est pour cela que la "
+                   "confidentialité (AES) ne remplace pas l'authentification (HMAC, onglet 2).")
+
+        max_byte = len(crypto["ciphertext"]) - 1
+        byte_index = st.slider("Octet du ciphertext à corrompre", 0, max_byte,
+                               min(BLOCK_SIZE + 2, max_byte))
+
+        if st.button("⚡ Altérer et déchiffrer"):
+            tampered = tamper_and_decrypt(crypto["ciphertext"], crypto["key"], crypto["iv"],
+                                          byte_index)
+            st.session_state["crypto_tamper"] = tampered
+            logger.warning(f"AES-256-CBC : octet {byte_index} du ciphertext altéré "
+                          f"(blocs {tampered.corrupted_blocks} impactés), "
+                          f"padding_valide={tampered.padding_valid}")
+
+        tampered = st.session_state.get("crypto_tamper")
+        if tampered is not None:
+            b1, b2 = st.columns(2)
+            b1.metric("Blocs corrompus", f"{tampered.corrupted_blocks[0]} et {tampered.corrupted_blocks[1]}")
+            b2.metric("Padding PKCS7 valide", "Oui" if tampered.padding_valid else "Non")
+
+            if not tampered.padding_valid:
+                st.error("🔓 Padding invalide après altération — c'est le **seul** signal "
+                         "d'erreur que CBC seul peut donner, et il n'apparaît pas toujours "
+                         "(seulement si le dernier bloc est touché).")
+            else:
+                st.warning("🔕 Déchiffrement « réussi » sans aucune erreur signalée : le "
+                          "récepteur ne peut pas savoir, par AES seul, que le message a été "
+                          "altéré en transit.")
+
+            if source_kind == "🖼️ Image chargée":
+                st.image(from_pixels(tampered.recovered, crypto["size"]), use_container_width=True,
+                         caption="Image déchiffrée après altération : une tache localisée sur 2 blocs, "
+                                 "le reste de l'image reste intact.")
+            else:
+                st.markdown("**Reçu après altération (best-effort)** :")
+                st.code(tampered.recovered.decode("utf-8", errors="replace"), language=None)
+
+# ---------------------------------------------------------------------------
+# Console de debug (togglable, style VS Code)
+# ---------------------------------------------------------------------------
+render_console_toggle()

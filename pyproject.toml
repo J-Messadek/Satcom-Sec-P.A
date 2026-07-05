@@ -13,6 +13,7 @@ dependencies = [
     "reedsolo",
     "pyyaml",
     "pillow",
+    "pycryptodome",
 ]
 
 [project.optional-dependencies]

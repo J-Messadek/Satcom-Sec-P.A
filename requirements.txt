@@ -3,3 +3,4 @@ streamlit
 reedsolo
 pyyaml
 pillow
+pycryptodome

