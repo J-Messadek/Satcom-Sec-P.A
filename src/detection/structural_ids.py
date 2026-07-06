@@ -10,14 +10,11 @@
 #   – Paquet hors-ordre      (SEQ_REORDER)
 # =============================================================
 
-import binascii
-import struct
 import sys
 import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from src.config import (
-    HEADER_SIZE, CRC_SIZE,
     ALERT_CRC_FAIL, ALERT_APID_SPOOF,
     ALERT_DUPLICATE_SEQ, ALERT_SEQ_GAP, ALERT_SEQ_REORDER,
 )
@@ -53,22 +50,11 @@ def detectStructuralAnomalies(
         seq = pkt["seqCount"]
 
         # --- CRC_FAIL ---
-        # Recalculer le CRC sur header + payload et comparer
-        rawHeader = struct.pack(
-            ">HHH",
-            (pkt["version"] & 0x07) << 13 |
-            (pkt["packetType"] & 0x01) << 12 |
-            (pkt["secHdrFlag"] & 0x01) << 11 |
-            (pkt["apid"] & 0x7FF),
-            (pkt["seqFlags"] & 0x03) << 14 | (seq & 0x3FFF),
-            len(pkt["payload"]) - 1,
-        )
-        computed = binascii.crc_hqx(rawHeader + pkt["payload"], 0xFFFF)
-        if computed != pkt.get("crc", computed):
+        if not pkt.get("crcValid", False):
             alerts.append({
                 "type":     ALERT_CRC_FAIL,
                 "seqCount": seq,
-                "detail":   f"CRC attendu {pkt.get('crc'):#06x}, calculé {computed:#06x}",
+                "detail":   f"reçu {pkt.get('receivedCrc'):#06x}, calculé {pkt.get('computedCrc'):#06x}",
             })
 
         # --- APID_SPOOF ---

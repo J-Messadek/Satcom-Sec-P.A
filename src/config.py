@@ -1,1 +1,57 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgY29uZmlnLnB5IOKAkyBDb25maWd1cmF0aW9uIGNlbnRyYWxlIGR1IHByb2pldCBTYXRjb20tU2VjLVAuQQojCiMgQ2VudHJhbGlzZSB0b3V0ZXMgbGVzIGNvbnN0YW50ZXMgQ0NTRFMsIGxlcyBwYXJhbcOodHJlcyBkZQojIHPDqWN1cml0w6kgZXQgbGVzIHZhbGV1cnMgcGFyIGTDqWZhdXQgdXRpbGlzw6llcyBwYXIgbGVzIG1vZHVsZXMKIyBkJ2F0dGFxdWUsIGRlIGTDqWZlbnNlIGV0IGRlIHLDqWNlcHRpb24uCiMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIENvbnN0YW50ZXMgQ0NTRFMgKFNwYWNlIFBhY2tldCBQcm90b2NvbCDigJMgQ0NTRFMgMTMzLjAtQi0yKQojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpIRUFERVJfU0laRSAgID0gNiAgICAjIFRhaWxsZSBkZSBsJ2VuLXTDqnRlIHByaW1haXJlIENDU0RTIGVuIG9jdGV0cyAoMyDDlyAxNiBiaXRzKQpDUkNfU0laRSAgICAgID0gMiAgICAjIFRhaWxsZSBkdSBDUkMtMTYgZW4gb2N0ZXRzIChDUkMtSFFYIC8gQ0NJVFQpCk1JTl9QQUNLRVQgICAgPSBIRUFERVJfU0laRSArIDEgKyBDUkNfU0laRSAgIyBUYWlsbGUgbWluaW1hbGUgZCd1biBwYXF1ZXQgdmFsaWRlCgojIFZhbGV1cnMgcGFyIGTDqWZhdXQgcG91ciBsYSBjb25zdHJ1Y3Rpb24gZGUgcGFxdWV0cwpERUZBVUxUX1ZFUlNJT04gICAgID0gMCAgICAgIyBWZXJzaW9uIENDU0RTICgzIGJpdHMpCkRFRkFVTFRfUEFDS0VUX1RZUEUgPSAwICAgICAjIDAgPSBUw6lsw6ltw6l0cmllLCAxID0gVMOpbMOpY29tbWFuZGUKREVGQVVMVF9TRUNfSERSICAgICA9IDAgICAgICMgU2Vjb25kYXJ5IEhlYWRlciBGbGFnCkRFRkFVTFRfQVBJRCAgICAgICAgPSAweDY0ICAjIEFwcGxpY2F0aW9uIFByb2Nlc3MgSUQgcGFyIGTDqWZhdXQgKDEwMCkKREVGQVVMVF9TRVFfRkxBR1MgICA9IDBiMTEgICMgMGIxMSA9IHBhcXVldCBhdXRvbm9tZSAodW5zZWdtZW50ZWQpCgojIENoYW1wcyBkZSBtYXNxdWFnZSBDQ1NEUwpBUElEX01BU0sgICAgICA9IDB4MDdGRgpTRVFfQ09VTlRfTUFTSyA9IDB4M0ZGRgpWRVJTSU9OX01BU0sgICA9IDB4MDcKVFlQRV9NQVNLICAgICAgPSAweDAxClNFQ19IRFJfTUFTSyAgID0gMHgwMQpTRVFfRkxBR1NfTUFTSyA9IDB4MDMKCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyBQYXJhbcOodHJlcyBkZSBzw6ljdXJpdMOpIOKAkyBEw6lmZW5zZSAyIChITUFDLVNIQTI1NikKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKIyBDbMOpIEhNQUMgcGFyIGTDqWZhdXQgKDMyIG9jdGV0cykuCiMg4pqg77iPICBFbiBwcm9kdWN0aW9uIDogY2hhcmdlciBkZXB1aXMgdW5lIHZhcmlhYmxlIGQnZW52aXJvbm5lbWVudAojICAgICBvdSB1biBmaWNoaWVyIGRlIHNlY3JldHMsIEpBTUFJUyBlbiBkdXIgZGFucyBsZSBjb2RlLgpERUZBVUxUX0hNQUNfS0VZOiBieXRlcyA9IGInXHgyYlx4N2VceDE1XHgxNlx4MjhceGFlXHhkMlx4YTYnIFwKICAgICAgICAgICAgICAgICAgICAgICAgICAgYidceGFiXHhmN1x4MTVceDg4XHgwOVx4Y2ZceDRmXHgzYycgXAogICAgICAgICAgICAgICAgICAgICAgICAgICBiJ1x4MmJceDdlXHgxNVx4MTZceDI4XHhhZVx4ZDJceGE2JyBcCiAgICAgICAgICAgICAgICAgICAgICAgICAgIGInXHhhYlx4ZjdceDE1XHg4OFx4MDlceGNmXHg0Zlx4M2MnCgpITUFDX0RJR0VTVF9TSVpFID0gMzIgICMgU0hBLTI1NiDihpIgMzIgb2N0ZXRzCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgVHlwZXMgZCdhbGVydGVzIElEUyBzdHJ1Y3R1cmVsCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCkFMRVJUX0NSQ19GQUlMICAgICAgPSAiQ1JDX0ZBSUwiICAgICAgICMgQ1JDIGludmFsaWRlCkFMRVJUX0FQSURfU1BPT0YgICAgPSAiQVBJRF9TUE9PRiIgICAgICMgQVBJRCBpbmF0dGVuZHUKQUxFUlRfRFVQTElDQVRFX1NFUSA9ICJEVVBMSUNBVEVfU0VRIiAgIyBOdW3DqXJvIGRlIHPDqXF1ZW5jZSBkdXBsaXF1w6kKQUxFUlRfU0VRX0dBUCAgICAgICA9ICJTRVFfR0FQIiAgICAgICAgIyBTYXV0IGRhbnMgbGEgc8OpcXVlbmNlCkFMRVJUX1NFUV9SRU9SREVSICAgPSAiU0VRX1JFT1JERVIiICAgICMgUGFxdWV0IGhvcnMtb3JkcmUKCkFMRVJUX0hNQUNfRkFJTCAgICAgPSAiSE1BQ19GQUlMIiAgICAgICMgVGFnIEhNQUMgaW52YWxpZGUgKGNvbnRlbnUgYWx0w6lyw6kpCkFMRVJUX0hNQUNfVU5LTk9XTiAgPSAiSE1BQ19VTktOT1dOIiAgICMgUGFxdWV0IHNhbnMgdGFnIGNvbm51IChpbmplY3Rpb24pCg==
+# =============================================================
+# config.py – Configuration centrale du projet Satcom-Sec-P.A
+#
+# Centralise toutes les constantes CCSDS, les paramètres de
+# sécurité et les valeurs par défaut utilisées par les modules
+# d'attaque, de défense et de réception.
+# =============================================================
+
+# --------------------------------------------------------------
+# Constantes CCSDS (Space Packet Protocol – CCSDS 133.0-B-2)
+# --------------------------------------------------------------
+
+HEADER_SIZE   = 6    # Taille de l'en-tête primaire CCSDS en octets (3 × 16 bits)
+CRC_SIZE      = 2    # Taille du CRC-16 en octets (CRC-HQX / CCITT)
+MIN_PACKET    = HEADER_SIZE + 1 + CRC_SIZE  # Taille minimale d'un paquet valide
+
+# Valeurs par défaut pour la construction de paquets
+DEFAULT_VERSION     = 0     # Version CCSDS (3 bits)
+DEFAULT_PACKET_TYPE = 0     # 0 = Télémétrie, 1 = Télécommande
+DEFAULT_SEC_HDR     = 0     # Secondary Header Flag
+DEFAULT_APID        = 0x64  # Application Process ID par défaut (100)
+DEFAULT_SEQ_FLAGS   = 0b11  # 0b11 = paquet autonome (unsegmented)
+
+# Champs de masquage CCSDS
+APID_MASK      = 0x07FF
+SEQ_COUNT_MASK = 0x3FFF
+VERSION_MASK   = 0x07
+TYPE_MASK      = 0x01
+SEC_HDR_MASK   = 0x01
+SEQ_FLAGS_MASK = 0x03
+
+# --------------------------------------------------------------
+# Paramètres de sécurité – Défense 2 (HMAC-SHA256)
+# --------------------------------------------------------------
+
+# Clé HMAC par défaut (32 octets).
+# ⚠️  En production : charger depuis une variable d'environnement
+#     ou un fichier de secrets, JAMAIS en dur dans le code.
+DEFAULT_HMAC_KEY: bytes = b'\x2b\x7e\x15\x16\x28\xae\xd2\xa6' \
+                           b'\xab\xf7\x15\x88\x09\xcf\x4f\x3c' \
+                           b'\x2b\x7e\x15\x16\x28\xae\xd2\xa6' \
+                           b'\xab\xf7\x15\x88\x09\xcf\x4f\x3c'
+
+HMAC_DIGEST_SIZE = 32  # SHA-256 → 32 octets
+
+# --------------------------------------------------------------
+# Types d'alertes IDS structurel
+# --------------------------------------------------------------
+
+ALERT_CRC_FAIL      = "CRC_FAIL"       # CRC invalide
+ALERT_APID_SPOOF    = "APID_SPOOF"     # APID inattendu
+ALERT_DUPLICATE_SEQ = "DUPLICATE_SEQ"  # Numéro de séquence dupliqué
+ALERT_SEQ_GAP       = "SEQ_GAP"        # Saut dans la séquence
+ALERT_SEQ_REORDER   = "SEQ_REORDER"    # Paquet hors-ordre
+
+ALERT_HMAC_FAIL     = "HMAC_FAIL"      # Tag HMAC invalide (contenu altéré)
+ALERT_HMAC_UNKNOWN  = "HMAC_UNKNOWN"   # Paquet sans tag connu (injection)

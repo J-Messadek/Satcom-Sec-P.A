@@ -2,30 +2,37 @@
 satellite_link:
   frequency_mhz: 2400
   bandwidth_khz: 500
-  frame_size: 1024          # Taille des trames en octets
-  header_magic_byte: "0x53" # Identifiant de début de trame ('S' pour Satellite)
+  frame_size: 1024 # Taille des trames en octets
+  header_magic_byte: '0x53' # Identifiant de début de trame ('S' pour Satellite)
 
 # Paramètres de Sécurité (Étudiants A & B)
 security:
-  encryption_algorithm: "AES-128"
-  cipher_key: "my_secret_key_32"
-  integrity_check: "CRC32"
+  encryption_algorithm: 'AES-128'
+  cipher_key: 'my_secret_key_32'
+  integrity_check: 'CRC32'
+
+# Bool activation
+activation:
+  reed_solomon: true
+  jamming: true
 
 # Simulation du Canal (Étudiant C)
 channel_simulation:
-  enable_jamming: true      # Activer/Désactiver le brouillage
-  default_snr: 15           # Rapport Signal/Bruit en dB
-  ber_threshold: 1e-5       # Taux d'erreur binaire cible
-  jamming_intensity: 0.3    # Puissance du brouillage (0 à 1)
+  enable_jamming: true # Activer/Désactiver le brouillage
+  default_snr: 12 # Rapport Signal/Bruit en dB
+  ber_threshold: 1e-5 # Taux d'erreur binaire cible
+  jamming_intensity: 0.02 # Puissance du brouillage (0 à 1)
   jamming:
-    mode: "barrage"         # Modes disponibles: barrage, pulse, tone
-    seed: 2026              # Seed pour reproduire exactement un scénario
+    mode: 'barrage' # Modes disponibles: barrage, pulse, tone
+    seed: 2026 # Seed pour reproduire exactement un scénario
     burst_probability: 0.08 # Probabilité de déclenchement d'une rafale de brouillage
-    burst_length: 64        # Longueur d'une rafale (échantillons ou bits)
+    burst_length: 64 # Longueur d'une rafale (échantillons ou bits)
     tone_frequency_ratio: 0.12 # Fréquence normalisée du brouillage sinusoïdal
+  reed_solomon:
+    ecc_symbols: 32         # Nombre d'octets de redondance RS
 
-# Chemins de fichiers
+# Chemins de fichiers (relatifs à la racine du dépôt)
 data_paths:
-  input_image: "data/input/earth.jpg"
-  output_image: "data/output/received_earth.jpg"
-  logs: "data/communication.log"
+  input_image: 'data/input/image_source.bmp'
+  output_image: 'data/output/received_image.bmp'
+  logs: 'data/communication.log'

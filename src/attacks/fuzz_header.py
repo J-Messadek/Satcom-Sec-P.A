@@ -1,1 +1,69 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgZnV6el9oZWFkZXIucHkg4oCTIEF0dGFxdWUgMiAvIFZlY3RldXIgNCA6IEZ1enppbmcgZGUgbCdlbi10w6p0ZQojCiMgUmFuZG9taXNlIHRvdXMgbGVzIGNoYW1wcyBkZSBsJ2VuLXTDqnRlIHByaW1haXJlIENDU0RTIGQndW4KIyBwYXF1ZXQgY2libMOpIChBUElELCBzZXFDb3VudCwgc2VxRmxhZ3MsIHZlcnNpb24sIHR5cGXigKYpLAojIHB1aXMgcmVjYWxjdWxlIGxlIENSQy4gU2ltdWxlIHVuZSBhdHRhcXVlIG5vbiBjaWJsw6llIHF1aQojIGNoZXJjaGUgw6AgZMOpc29yaWVudGVyIGxlIHBhcnNldXIgcsOpY2VwdGV1ci4KIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKaW1wb3J0IG9zCgpzeXMucGF0aC5pbnNlcnQoMCwgb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShfX2ZpbGVfXyksICIuLiIsICIuLiIpKQpmcm9tIHNyYy5yZWNlaXZlci5mcmFtZVBhcnNlciBpbXBvcnQgcGFyc2VTdHJlYW0KZnJvbSBzcmMuYXR0YWNrcy5fdXRpbHMgaW1wb3J0IHJlYnVpbGRQYWNrZXQsIG9mZnNldEluU3RyZWFtCgoKZGVmIGZ1enpIZWFkZXIoCiAgICByYXdTdHJlYW06IGJ5dGVzLAogICAgdGFyZ2V0U2VxOiBpbnQsCiAgICB2ZXJib3NlOiBib29sID0gVHJ1ZSwKKSAtPiBieXRlczoKICAgICIiIgogICAgUmFuZG9taXNlIHRvdXMgbGVzIGNoYW1wcyBkZSBsJ2VuLXTDqnRlIHByaW1haXJlIGQndW4gcGFxdWV0LCBDUkMgcmVjb21wdXRlZC4KCiAgICBEw6ltb250cmUgcXUndW4gYXR0YXF1YW50IHBldXQgaW5qZWN0ZXIgbidpbXBvcnRlIHF1ZWxsZSB2YWxldXIgZCdlbi10w6p0ZQogICAgc2FucyBtw6ljYW5pc21lIGQnYXV0aGVudGlmaWNhdGlvbiBjcnlwdG9ncmFwaGlxdWUuIExlIHBheWxvYWQgZXN0IGNvbnNlcnbDqQogICAgaW50YWN0IDsgc2V1bCBsJ2VuLXTDqnRlIGVzdCBjb3Jyb21wdSBhbMOpYXRvaXJlbWVudC4KCiAgICBBcmdzOgogICAgICAgIHJhd1N0cmVhbTogIEZsdXggZGUgcGFxdWV0cyBDQ1NEUyBicnV0cy4KICAgICAgICB0YXJnZXRTZXE6ICBzZXFDb3VudCBkdSBwYXF1ZXQgw6AgYWx0w6lyZXIuCiAgICAgICAgdmVyYm9zZTogICAgQWZmaWNoZXIgdW4gbG9nIGRlIGwnYWx0w6lyYXRpb24uCgogICAgUmV0dXJuczoKICAgICAgICBGbHV4IG1vZGlmacOpIGF2ZWMgZW4tdMOqdGUgYWzDqWF0b2lyZSBldCBDUkMgcmVjb21wdXRlZC4KCiAgICBEw6l0ZWN0aW9uIChEw6lmZW5zZSAyKSA6CiAgICAgICAg4oaSIEhNQUNfRkFJTCAvIEhNQUNfVU5LTk9XTiA6IGwnZW4tdMOqdGUgZmFpdCBwYXJ0aWUgZHUgbWF0w6lyaWF1IEhNQUMKICAgICAgICDihpIgQVBJRF9TUE9PRiwgU0VRX0dBUOKApiAgICA6IHNlbG9uIGxlcyB2YWxldXJzIGFsw6lhdG9pcmVzIGfDqW7DqXLDqWVzCiAgICAiIiIKICAgIHBhY2tldHMgPSBwYXJzZVN0cmVhbShyYXdTdHJlYW0pCiAgICByZXN1bHQgID0gYnl0ZWFycmF5KHJhd1N0cmVhbSkKCiAgICBmb3IgcGt0IGluIHBhY2tldHM6CiAgICAgICAgaWYgcGt0WyJzZXFDb3VudCJdICE9IHRhcmdldFNlcToKICAgICAgICAgICAgY29udGludWUKCiAgICAgICAgb2Zmc2V0ID0gb2Zmc2V0SW5TdHJlYW0ocGFja2V0cywgdGFyZ2V0U2VxKQogICAgICAgIG5ld1BrdCA9IHJlYnVpbGRQYWNrZXQoCiAgICAgICAgICAgIGFwaWQgICAgICAgPSByYW5kb20ucmFuZGludCgwLCAweDdGRiksCiAgICAgICAgICAgIHNlcUZsYWdzICAgPSByYW5kb20ucmFuZGludCgwLCAzKSwKICAgICAgICAgICAgc2VxQ291bnQgICA9IHJhbmRvbS5yYW5kaW50KDAsIDB4M0ZGRiksCiAgICAgICAgICAgIHZlcnNpb24gICAgPSByYW5kb20ucmFuZGludCgwLCA3KSwKICAgICAgICAgICAgcGFja2V0VHlwZSA9IHJhbmRvbS5yYW5kaW50KDAsIDEpLAogICAgICAgICAgICBzZWNIZHJGbGFnID0gcmFuZG9tLnJhbmRpbnQoMCwgMSksCiAgICAgICAgICAgIHBheWxvYWQgICAgPSBwa3RbInBheWxvYWQiXSwKICAgICAgICApCiAgICAgICAgcmVzdWx0W29mZnNldCA6IG9mZnNldCArIHBrdFsidG90YWxTaXplIl1dID0gbmV3UGt0CgogICAgICAgIGlmIHZlcmJvc2U6CiAgICAgICAgICAgIHByaW50KAogICAgICAgICAgICAgICAgZiJbQTIvZnV6ekhlYWRlcl0gc2VxQ291bnQ9e3RhcmdldFNlcX0gOiAiCiAgICAgICAgICAgICAgICBmImVuLXTDqnRlIGVudGnDqHJlbWVudCByYW5kb21pc8OpICAoQ1JDIHJlY29tcHV0ZWQpIgogICAgICAgICAgICApCiAgICAgICAgYnJlYWsKCiAgICByZXR1cm4gYnl0ZXMocmVzdWx0KQo=
+# =============================================================
+# fuzz_header.py – Attaque 2 / Vecteur 4 : Fuzzing de l'en-tête
+#
+# Randomise tous les champs de l'en-tête primaire CCSDS d'un
+# paquet ciblé (APID, seqCount, seqFlags, version, type…),
+# puis recalcule le CRC. Simule une attaque non ciblée qui
+# cherche à désorienter le parseur récepteur.
+# =============================================================
+
+import random
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from src.receiver.frame_parser import parse_stream
+from src.attacks._utils import rebuildPacket, offsetInStream
+
+
+def fuzzHeader(
+    rawStream: bytes,
+    targetSeq: int,
+    verbose: bool = True,
+) -> bytes:
+    """
+    Randomise tous les champs de l'en-tête primaire d'un paquet, CRC recomputed.
+
+    Démontre qu'un attaquant peut injecter n'importe quelle valeur d'en-tête
+    sans mécanisme d'authentification cryptographique. Le payload est conservé
+    intact ; seul l'en-tête est corrompu aléatoirement.
+
+    Args:
+        rawStream:  Flux de paquets CCSDS bruts.
+        targetSeq:  seqCount du paquet à altérer.
+        verbose:    Afficher un log de l'altération.
+
+    Returns:
+        Flux modifié avec en-tête aléatoire et CRC recomputed.
+
+    Détection (Défense 2) :
+        → HMAC_FAIL / HMAC_UNKNOWN : l'en-tête fait partie du matériau HMAC
+        → APID_SPOOF, SEQ_GAP…    : selon les valeurs aléatoires générées
+    """
+    packets = parse_stream(rawStream)
+    result  = bytearray(rawStream)
+
+    for pkt in packets:
+        if pkt["seqCount"] != targetSeq:
+            continue
+
+        offset = offsetInStream(packets, targetSeq)
+        newPkt = rebuildPacket(
+            apid       = random.randint(0, 0x7FF),
+            seqFlags   = random.randint(0, 3),
+            seqCount   = random.randint(0, 0x3FFF),
+            version    = random.randint(0, 7),
+            packetType = random.randint(0, 1),
+            secHdrFlag = random.randint(0, 1),
+            payload    = pkt["payload"],
+        )
+        result[offset : offset + pkt["totalSize"]] = newPkt
+
+        if verbose:
+            print(
+                f"[A2/fuzzHeader] seqCount={targetSeq} : "
+                f"en-tête entièrement randomisé  (CRC recomputed)"
+            )
+        break
+
+    return bytes(result)

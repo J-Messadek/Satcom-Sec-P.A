@@ -1,1 +1,77 @@
-IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgZnV6el9wYXlsb2FkLnB5IOKAkyBBdHRhcXVlIDIgLyBWZWN0ZXVyIDMgOiBGdXp6aW5nIGR1IHBheWxvYWQKIwojIEludHJvZHVpdCBkZXMgaW52ZXJzaW9ucyBkZSBiaXRzIGFsw6lhdG9pcmVzIGRhbnMgbGUgcGF5bG9hZAojIGQndW4gcGFxdWV0IENDU0RTLCBwdWlzIHJlY2FsY3VsZSBsZSBDUkMgcG91ciBxdWUgbGUKIyByw6ljZXB0ZXVyIGFjY2VwdGUgbGEgdHJhbWUgY29ycm9tcHVlIHNhbnMgbGUgc2F2b2lyLgojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCmltcG9ydCByYW5kb20KaW1wb3J0IHN5cwppbXBvcnQgb3MKCnN5cy5wYXRoLmluc2VydCgwLCBvcy5wYXRoLmpvaW4ob3MucGF0aC5kaXJuYW1lKF9fZmlsZV9fKSwgIi4uIiwgIi4uIikpCmZyb20gc3JjLnJlY2VpdmVyLmZyYW1lUGFyc2VyIGltcG9ydCBwYXJzZVN0cmVhbQpmcm9tIHNyYy5hdHRhY2tzLl91dGlscyBpbXBvcnQgcmVidWlsZFBhY2tldCwgb2Zmc2V0SW5TdHJlYW0KCgpkZWYgZnV6elBheWxvYWQoCiAgICByYXdTdHJlYW06IGJ5dGVzLAogICAgdGFyZ2V0U2VxOiBpbnQsCiAgICBudW1GbGlwczogaW50ID0gMSwKICAgIHZlcmJvc2U6IGJvb2wgPSBUcnVlLAopIC0+IGJ5dGVzOgogICAgIiIiCiAgICBBcHBsaXF1ZSBkZXMgaW52ZXJzaW9ucyBkZSBiaXRzIGFsw6lhdG9pcmVzIGRhbnMgbGUgcGF5bG9hZCBkJ3VuIHBhcXVldC4KCiAgICBTaW11bGUgdW5lIGF0dGFxdWUgb8O5IGwnYWR2ZXJzYWlyZSBjb3Jyb21wdCBsZXMgZG9ubsOpZXMgdXRpbGVzCiAgICAobWVzdXJlcywgaW1hZ2VzLCBjb21tYW5kZXMpIGRlIGZhw6dvbiBub24gZMOpdGVjdGFibGUgcGFyIGxlIHNldWwgQ1JDLAogICAgY2FyIGxlIENSQyBlc3QgcmVjYWxjdWzDqSBhcHLDqHMgbGEgY29ycnVwdGlvbi4KCiAgICBBcmdzOgogICAgICAgIHJhd1N0cmVhbTogIEZsdXggZGUgcGFxdWV0cyBDQ1NEUyBicnV0cy4KICAgICAgICB0YXJnZXRTZXE6ICBzZXFDb3VudCBkdSBwYXF1ZXQgw6AgY29ycm9tcHJlLgogICAgICAgIG51bUZsaXBzOiAgIE5vbWJyZSBkJ29jdGV0cyDDoCBpbnZlcnNlciAoZMOpZmF1dCA6IDEpLgogICAgICAgIHZlcmJvc2U6ICAgIEFmZmljaGVyIHVuIGxvZyBkZSBsJ2FsdMOpcmF0aW9uLgoKICAgIFJldHVybnM6CiAgICAgICAgRmx1eCBtb2RpZmnDqSBhdmVjIHBheWxvYWQgY29ycm9tcHUgZXQgQ1JDIHJlY29tcHV0ZWQuCgogICAgRMOpdGVjdGlvbiAoRMOpZmVuc2UgMikgOgogICAgICAgIOKGkiBITUFDX0ZBSUwgOiBsZSBjb250ZW51IGFsdMOpcsOpIG5lIGNvcnJlc3BvbmQgcGx1cyBhdSB0YWcgSE1BQwogICAgIiIiCiAgICBwYWNrZXRzID0gcGFyc2VTdHJlYW0ocmF3U3RyZWFtKQogICAgcmVzdWx0ICA9IGJ5dGVhcnJheShyYXdTdHJlYW0pCgogICAgZm9yIHBrdCBpbiBwYWNrZXRzOgogICAgICAgIGlmIHBrdFsic2VxQ291bnQiXSAhPSB0YXJnZXRTZXE6CiAgICAgICAgICAgIGNvbnRpbnVlCgogICAgICAgIG9mZnNldCAgICAgICA9IG9mZnNldEluU3RyZWFtKHBhY2tldHMsIHRhcmdldFNlcSkKICAgICAgICBmdXp6ZWQgICAgICAgPSBieXRlYXJyYXkocGt0WyJwYXlsb2FkIl0pCiAgICAgICAgZmxpcHBlZEF0ICAgID0gW10KCiAgICAgICAgZm9yIF8gaW4gcmFuZ2UobWluKG51bUZsaXBzLCBsZW4oZnV6emVkKSkpOgogICAgICAgICAgICBwb3MgICAgICAgPSByYW5kb20ucmFuZGludCgwLCBsZW4oZnV6emVkKSAtIDEpCiAgICAgICAgICAgIGZ1enplZFtwb3NdIF49IHJhbmRvbS5yYW5kaW50KDEsIDB4RkYpCiAgICAgICAgICAgIGZsaXBwZWRBdC5hcHBlbmQocG9zKQoKICAgICAgICBuZXdQa3QgPSByZWJ1aWxkUGFja2V0KAogICAgICAgICAgICBhcGlkICAgICAgID0gcGt0WyJhcGlkIl0sCiAgICAgICAgICAgIHNlcUZsYWdzICAgPSBwa3RbInNlcUZsYWdzIl0sCiAgICAgICAgICAgIHNlcUNvdW50ICAgPSBwa3RbInNlcUNvdW50Il0sCiAgICAgICAgICAgIHZlcnNpb24gICAgPSBwa3RbInZlcnNpb24iXSwKICAgICAgICAgICAgcGFja2V0VHlwZSA9IHBrdFsicGFja2V0VHlwZSJdLAogICAgICAgICAgICBzZWNIZHJGbGFnID0gcGt0WyJzZWNIZHJGbGFnIl0sCiAgICAgICAgICAgIHBheWxvYWQgICAgPSBieXRlcyhmdXp6ZWQpLAogICAgICAgICkKICAgICAgICByZXN1bHRbb2Zmc2V0IDogb2Zmc2V0ICsgcGt0WyJ0b3RhbFNpemUiXV0gPSBuZXdQa3QKCiAgICAgICAgaWYgdmVyYm9zZToKICAgICAgICAgICAgcHJpbnQoCiAgICAgICAgICAgICAgICBmIltBMi9mdXp6UGF5bG9hZF0gc2VxQ291bnQ9e3RhcmdldFNlcX0gOiAiCiAgICAgICAgICAgICAgICBmIntudW1GbGlwc30gZmxpcChzKSBhdXggcG9zaXRpb25zIHtmbGlwcGVkQXR9ICAoQ1JDIHJlY29tcHV0ZWQpIgogICAgICAgICAgICApCiAgICAgICAgYnJlYWsKCiAgICByZXR1cm4gYnl0ZXMocmVzdWx0KQo=
+# =============================================================
+# fuzz_payload.py – Attaque 2 / Vecteur 3 : Fuzzing du payload
+#
+# Introduit des inversions de bits aléatoires dans le payload
+# d'un paquet CCSDS, puis recalcule le CRC pour que le
+# récepteur accepte la trame corrompue sans le savoir.
+# =============================================================
+
+import random
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+from src.receiver.frame_parser import parse_stream
+from src.attacks._utils import rebuildPacket, offsetInStream
+
+
+def fuzzPayload(
+    rawStream: bytes,
+    targetSeq: int,
+    numFlips: int = 1,
+    verbose: bool = True,
+) -> bytes:
+    """
+    Applique des inversions de bits aléatoires dans le payload d'un paquet.
+
+    Simule une attaque où l'adversaire corrompt les données utiles
+    (mesures, images, commandes) de façon non détectable par le seul CRC,
+    car le CRC est recalculé après la corruption.
+
+    Args:
+        rawStream:  Flux de paquets CCSDS bruts.
+        targetSeq:  seqCount du paquet à corrompre.
+        numFlips:   Nombre d'octets à inverser (défaut : 1).
+        verbose:    Afficher un log de l'altération.
+
+    Returns:
+        Flux modifié avec payload corrompu et CRC recomputed.
+
+    Détection (Défense 2) :
+        → HMAC_FAIL : le contenu altéré ne correspond plus au tag HMAC
+    """
+    packets = parse_stream(rawStream)
+    result  = bytearray(rawStream)
+
+    for pkt in packets:
+        if pkt["seqCount"] != targetSeq:
+            continue
+
+        offset       = offsetInStream(packets, targetSeq)
+        fuzzed       = bytearray(pkt["payload"])
+        flippedAt    = []
+
+        for _ in range(min(numFlips, len(fuzzed))):
+            pos       = random.randint(0, len(fuzzed) - 1)
+            fuzzed[pos] ^= random.randint(1, 0xFF)
+            flippedAt.append(pos)
+
+        newPkt = rebuildPacket(
+            apid       = pkt["apid"],
+            seqFlags   = pkt["seqFlags"],
+            seqCount   = pkt["seqCount"],
+            version    = pkt["version"],
+            packetType = pkt["packetType"],
+            secHdrFlag = pkt["secHdrFlag"],
+            payload    = bytes(fuzzed),
+        )
+        result[offset : offset + pkt["totalSize"]] = newPkt
+
+        if verbose:
+            print(
+                f"[A2/fuzzPayload] seqCount={targetSeq} : "
+                f"{numFlips} flip(s) aux positions {flippedAt}  (CRC recomputed)"
+            )
+        break
+
+    return bytes(result)
