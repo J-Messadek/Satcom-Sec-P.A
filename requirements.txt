@@ -1,0 +1,6 @@
+# Dépendances d'exécution. Préférer `pip install -e .` (voir pyproject.toml).
+streamlit
+reedsolo
+pyyaml
+pillow
+pycryptodome
